@@ -9,13 +9,19 @@
     - tree
 
 # OS X config
-- name: Read natural scrolling value
-  shell: defaults read NSGlobalDomain com.apple.swipescrolldirection
-  register: nsval
+- block:
+    - name: Read natural scrolling value
+      shell: defaults read NSGlobalDomain com.apple.swipescrolldirection
+      register: nsval
 
-- name: Disable natural scrolling (Requires restart)
-  shell: defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
-  when: nsval.stdout != '0'
+    - name: Disable natural scrolling (Requires restart)
+      shell: defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
+      when: nsval.stdout != '0'
+
+  rescue:
+    name: Scrolling value not availible
+    debug:
+      msg: "There was an error accessing com.apple.swipescrolldirection"
 
 # development config
 - name: Create VCS folder
