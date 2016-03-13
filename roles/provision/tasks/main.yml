@@ -19,9 +19,9 @@
       when: nsval.stdout != '0'
 
   rescue:
-    name: Scrolling value not availible
-    debug:
-      msg: "There was an error accessing com.apple.swipescrolldirection"
+    - name: Scrolling value not availible
+      debug:
+        msg: "There was an error accessing com.apple.swipescrolldirection"
 
 # development config
 - name: Create VCS folder
