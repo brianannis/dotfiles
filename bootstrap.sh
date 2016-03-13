@@ -11,38 +11,38 @@ echo "                                    ";
 echo "Preflight check:"
 echo ""
 if ! [ -x /usr/bin/git ]; then
-   echo "Installing xcode tools"
+   echo -e "\033[0;33m Installing xcode tools \033[0m"
    xcode-select --install
 else
-   echo -e "\033[0;32m xcode tools installed \x1B[0m"
+   echo -e "\033[0;32m xcode tools installed \033[0m"
 fi
 
 if ! [ -x /usr/local/bin/brew ]; then
-   echo "Installing brew"
+   echo -e "\033[0;33m Installing brew \033[0m"
    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 else
-   echo -e "\033[0;32m brew installed \x1B[0m"
+   echo -e "\033[0;32m brew installed \033[0m"
 fi
 
 if ! [ -x /usr/local/bin/python ]; then
-   echo "Installing homebrew python"
+   echo -e "\033[0;33m Installing homebrew python \033[0m"
    brew install python
 else
-  echo -e "\033[0;32m python installed \x1B[0m"
+  echo -e "\033[0;32m python installed \033[0m"
 fi
 
 if ! [ -x /usr/local/bin/python ]; then
-   echo "Upgrading pip"
+   echo -e "\033[0;33m Upgrading pip \033[0m"
    pip install --upgrade pip
 else
-  echo -e "\033[0;32m pip upgraded \x1B[0m"
+  echo -e "\033[0;32m pip upgraded \033[0m"
 fi
 
 if ! [ -x /usr/local/bin/ansible ]; then
-   echo "Installing ansible"
+   echo -e "\033[0;33m Installing ansible \033[0m"
    pip install ansible
 else
-  echo -e "\033[0;32m ansible installed \x1B[0m"
+  echo -e "\033[0;32m ansible installed \033[0m"
 fi
 echo ""
 echo -e "Initilize playbook:\n"
