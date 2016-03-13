@@ -14,6 +14,9 @@
       shell: defaults read NSGlobalDomain com.apple.swipescrolldirection
       register: nsval
 
+    - name: Check output
+      debug: msg="{{nsval}}"
+
     - name: Disable natural scrolling (Requires restart)
       shell: defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
       when: nsval.stdout != '0'
@@ -39,4 +42,4 @@
     src: zshrc.j2
     dest: ~/.zshrc
     mode: 0644
-    owner: "{{ ansible_env['USER'] }}
+    owner: "{{ ansible_env['USER'] }}"
