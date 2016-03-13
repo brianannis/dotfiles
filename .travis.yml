@@ -11,6 +11,6 @@ before_install:
 script:
   # Basic role syntax check
   #- ansible-playbook roles/provision/tests/test.yml -i roles/provision/tests/inventory --syntax-check
-  - chmod a+x boostrap.sh
+  - chmod a+x bootsrap.sh
   - chmod a+x apps.sh
-  - ./bootstrap
+  - ./bootstrap.sh
