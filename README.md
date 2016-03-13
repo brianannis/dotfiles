@@ -3,9 +3,5 @@ OS X Bootstrapping
 
 ### How to get started ###
 - Clone repo
-- ```shell
-chmod a+x launch.sh
-```
-- ```shell
-./launch.sh
-```
+- ```chmod a+x bootstrap.sh ```
+- ```./bootstrap.sh```
