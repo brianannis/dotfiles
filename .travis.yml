@@ -1,0 +1,19 @@
+---
+os:
+  - osx
+
+language: python
+python: "2.7"
+
+# Use the new container infrastructure
+#sudo: false
+
+before_install:
+  - brew update
+
+script:
+  # Basic role syntax check
+  #- ansible-playbook roles/provision/tests/test.yml -i roles/provision/tests/inventory --syntax-check
+  - chmod a+x boostrap.sh
+  - chmod a+x apps.sh
+  - ./bootstrap

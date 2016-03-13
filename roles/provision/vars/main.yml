@@ -1,2 +1,4 @@
 ---
 # vars file for provision
+ZSHRC_PATH: /Users/brian/.oh-my-zsh
+ZSH_PLUGINS: 'git brew pip web-search'
