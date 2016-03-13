@@ -1,0 +1,13 @@
+- hosts: localhost
+  connection: local
+  gather_facts: yes
+  tasks:
+
+  - name: Install prerequisites
+    homebrew:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - htop-osx
+      - wget
+      - tree
