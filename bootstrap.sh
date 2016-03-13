@@ -48,9 +48,9 @@ fi
 # As an alternative to cask + symlinking
 # Can drop in your own macapps.link script
 echo ""
-echo -e "Initilize apps:\n"
+echo -e "Initialize apps:\n"
 ./apps.sh
 
 echo ""
-echo -e "Initilize playbook:\n"
+echo -e "Initialize playbook:\n"
 ansible-playbook launch.yml
