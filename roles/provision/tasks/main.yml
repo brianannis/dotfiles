@@ -36,6 +36,7 @@
   shell: curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
   args:
     creates: ~/.oh-my-zsh
+  when: lookup('env','TRAVIS') != 'true'
 
 - name: Generate zsh config
   template:
