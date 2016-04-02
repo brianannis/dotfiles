@@ -26,12 +26,13 @@
       debug:
         msg: "There was an error accessing com.apple.swipescrolldirection"
 
-# development config
+# VCS config
 - name: Create VCS folder
   file:
     path: "{{ ansible_env['HOME'] }}/development"
     state: directory
 
+# zsh config
 - name: Install oh-my-zsh
   shell: curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
   args:
@@ -45,5 +46,13 @@
     mode: 0644
     owner: "{{ ansible_env['USER'] }}"
 
+# Atom config
 - name: Install atom packages
   shell: /Applications/Atom.app/Contents/Resources/app/apm/node_modules/.bin/apm install --packages-file atom-packages
+
+# iTerm config
+- name: Download iterm-colors
+  git:
+    repo: https://github.com/bahlo/iterm-colors.git
+    dest: "{{ ansible_env['HOME'] }}/development"
+    version: master

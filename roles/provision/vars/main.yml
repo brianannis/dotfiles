@@ -1,4 +1,4 @@
 ---
 # vars file for provision
-ZSHRC_PATH: /Users/brian/.oh-my-zsh
+ZSHRC_PATH: "{{ ansible_env['HOME'] }}/.oh-my-zsh"
 ZSH_PLUGINS: 'git brew pip web-search'
