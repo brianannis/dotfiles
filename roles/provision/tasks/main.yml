@@ -46,4 +46,4 @@
     owner: "{{ ansible_env['USER'] }}"
 
 - name: Install atom packages
-  shell: apm install --packages-file atom-packages
+  shell: /Applications/Atom.app/Contents/Resources/app/apm/node_modules/.bin/apm install --packages-file atom-packages
