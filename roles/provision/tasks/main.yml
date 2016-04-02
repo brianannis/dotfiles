@@ -45,5 +45,5 @@
     mode: 0644
     owner: "{{ ansible_env['USER'] }}"
 
-#- name: Install atom packages
-#  shell: apm install --packages-file atom-packages
+- name: Install atom packages
+  shell: apm install --packages-file atom-packages
