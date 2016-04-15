@@ -71,7 +71,7 @@ installApp() {
 ###############################
 installApp "dmg" "Chrome" "Google Chrome.app" "https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg" "" "" ""
 installApp "dmg" "Dropbox" "Dropbox.app" "https://www.dropbox.com/download?plat=mac" "" "" ""
-installApp "zip" "GitHub" "GitHub.app" "https://central.github.com/mac/latest" "" "" ""
+installApp "zip" "GitHub" "GitHub Desktop.app" "https://central.github.com/mac/latest" "" "" ""
 installApp "dmg" "SublimeText" "Sublime Text.app" "https://download.sublimetext.com/Sublime%20Text%20Build%203103.dmg" "" "" ""
 installApp "zip" "Atom" "Atom.app" "https://atom.io/download/mac" "" "" ""
 installApp "zip" "iTerm2" "iTerm.app" "https://iterm2.com/downloads/stable/iTerm2-2_1_4.zip" "" "" ""

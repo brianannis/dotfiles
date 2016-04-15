@@ -10,16 +10,14 @@
 
 # OS X config
 - block:
-    - name: Read natural scrolling value
-      shell: defaults read NSGlobalDomain com.apple.swipescrolldirection
-      register: nsval
-
-    - name: Check output
-      debug: msg="{{nsval}}"
-
     - name: Disable natural scrolling (Requires restart)
-      shell: defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
-      when: nsval.stdout != '0'
+      osx_defaults:
+        domain: NSGlobalDomain
+        key: com.apple.swipescrolldirection
+        type: bool
+        value: false
+        state: present
+      tags: 'osx'
 
   rescue:
     - name: Scrolling value not availible
@@ -40,7 +38,7 @@
 - name: Download iterm-colors
   git:
     repo: https://github.com/bahlo/iterm-colors.git
-    dest: "{{ ansible_env['HOME'] }}/development"
+    dest: "{{ ansible_env['HOME'] }}/development/iterm-colors"
     version: master
 
 # zsh config
@@ -56,3 +54,4 @@
     dest: ~/.zshrc
     mode: 0644
     owner: "{{ ansible_env['USER'] }}"
+  when: lookup('env','TRAVIS') != 'true'
