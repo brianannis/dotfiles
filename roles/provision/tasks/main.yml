@@ -31,8 +31,13 @@
     state: directory
 
 # Atom config
-- name: Install atom packages
-  shell: /Applications/Atom.app/Contents/Resources/app/apm/node_modules/.bin/apm install --packages-file atom-packages
+- block:
+    - name: Install atom packages
+      shell: /Applications/Atom.app/Contents/Resources/app/apm/bin install --packages-file atom-packages
+  rescue:
+    - name: apm not availible
+      debug:
+        msg: "There was an error accessing apm"
 
 # iTerm config
 - name: Download iterm-colors
