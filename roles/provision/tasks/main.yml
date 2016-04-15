@@ -33,7 +33,7 @@
 # Atom config
 - block:
     - name: Install atom packages
-      shell: /Applications/Atom.app/Contents/Resources/app/apm/bin install --packages-file atom-packages
+      shell: /Applications/Atom.app/Contents/Resources/app/apm/bin/apm install --packages-file atom-packages
   rescue:
     - name: apm not availible
       debug:
