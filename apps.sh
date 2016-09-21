@@ -71,7 +71,7 @@ installApp() {
 ###############################
 installApp "dmg" "Chrome" "Google Chrome.app" "https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg" "" "" ""
 installApp "dmg" "Dropbox" "Dropbox.app" "https://www.dropbox.com/download?plat=mac" "" "" ""
-installApp "zip" "GitHub" "GitHub.app" "https://central.github.com/mac/latest" "" "" ""
+installApp "zip" "GitHub Desktop" "GitHub Desktop.app" "https://central.github.com/mac/latest" "" "" ""
 installApp "dmg" "SublimeText" "Sublime Text.app" "https://download.sublimetext.com/Sublime%20Text%20Build%203114.dmg" "" "" ""
 installApp "zip" "Atom" "Atom.app" "https://atom.io/download/mac" "" "" ""
 installApp "zip" "Dash" "Dash.app" "http://london.kapeli.com/Dash.zip" "" "" ""
