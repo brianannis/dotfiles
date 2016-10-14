@@ -75,7 +75,7 @@ installApp "zip" "GitHub Desktop" "GitHub Desktop.app" "https://central.github.c
 installApp "dmg" "SublimeText" "Sublime Text.app" "https://download.sublimetext.com/Sublime%20Text%20Build%203114.dmg" "" "" ""
 installApp "zip" "Atom" "Atom.app" "https://atom.io/download/mac" "" "" ""
 installApp "zip" "Dash" "Dash.app" "http://london.kapeli.com/Dash.zip" "" "" ""
-installApp "zip" "iTerm2" "iTerm.app" "https://iterm2.com/downloads/stable/iTerm2-3_0_4.zip" "" "" ""
+installApp "zip" "iTerm2" "iTerm.app" "https://iterm2.com/downloads/stable/iTerm2-3_0_10.zip" "" "" ""
 installApp "zip" "coconutBattery" "coconutBattery.app" "http://www.coconut-flavour.com/downloads/coconutBattery_3_1_2.zip" "" "" ""
 installApp "dmg" "Spotify" "Spotify.app" "http://download.spotify.com/Spotify.dmg" "" "" ""
 
