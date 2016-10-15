@@ -23,6 +23,20 @@
     - name: Scrolling value not availible
       debug:
         msg: "There was an error accessing com.apple.swipescrolldirection"
+- block:
+    - name: Disable autocorrect (Requires restart)
+      osx_defaults:
+        domain: NSGlobalDomain
+        key: NSAutomaticSpellingCorrectionEnabled
+        type: bool
+        value: false
+        state: present
+      tags: 'osx'
+
+  rescue:
+    - name: Autocorrect value not availible
+      debug:
+        msg: "There was an error accessing NSAutomaticSpellingCorrectionEnabled"
 
 # VCS config
 - name: Create VCS folder
