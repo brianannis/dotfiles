@@ -2,3 +2,14 @@
 # vars file for provision
 ZSHRC_PATH: "{{ ansible_env['HOME'] }}/.oh-my-zsh"
 ZSH_PLUGINS: 'git brew pip web-search'
+APPS:
+  - Chrome
+  - Dropbox
+  - GitHub
+  - SublimeText
+  - Atom
+  - Dash
+  - iTerm2
+  - coconutBattery
+  - Spotify
+  - HipChat
