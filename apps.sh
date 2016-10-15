@@ -78,6 +78,7 @@ installApp "zip" "Dash" "Dash.app" "https://newyork.kapeli.com/downloads/v3/Dash
 installApp "zip" "iTerm2" "iTerm.app" "https://iterm2.com/downloads/stable/iTerm2-3_0_10.zip" "" "" ""
 installApp "zip" "coconutBattery" "coconutBattery.app" "http://www.coconut-flavour.com/downloads/coconutBattery_3_1_2.zip" "" "" ""
 installApp "dmg" "Spotify" "Spotify.app" "http://download.spotify.com/Spotify.dmg" "" "" ""
+installApp "dmg" "HipChat" "HipChat.app" "https://www.hipchat.com/downloads/latest/mac" "" "" ""
 
 ###############################
 #    Print script footer      #
