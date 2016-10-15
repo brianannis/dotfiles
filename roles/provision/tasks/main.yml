@@ -53,6 +53,16 @@
       debug:
         msg: "There was an error accessing apm"
 
+# Sublime config
+- name: Generate Sublime user config
+  template:
+    src: sublime-settings.j2
+    dest: "/Users/{{ ansible_env['USER'] }}/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings"
+    owner: "{{ ansible_env['USER'] }}"
+    group: staff
+    mode: '0644'
+  tags: 'sl'
+
 # iTerm config
 - name: Download iterm-colors
   git:
