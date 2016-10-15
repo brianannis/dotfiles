@@ -61,7 +61,6 @@
     owner: "{{ ansible_env['USER'] }}"
     group: staff
     mode: '0644'
-  tags: 'sl'
 
 # iTerm config
 - name: Download iterm-colors
