@@ -12,5 +12,4 @@ script:
   # Basic role syntax check
   #- ansible-playbook roles/provision/tests/test.yml -i roles/provision/tests/inventory --syntax-check
   - chmod a+x bootstrap.sh
-  - chmod a+x apps.sh
   - ./bootstrap.sh
