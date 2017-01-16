@@ -45,12 +45,6 @@ else
   echo -e "\033[0;32m ansible installed \033[0m"
 fi
 
-# As an alternative to cask + symlinking
-# Can drop in your own macapps.link script
-echo ""
-echo -e "Initialize apps:\n"
-./apps.sh
-
 echo ""
 echo -e "Initialize playbook:\n"
 ansible-playbook launch.yml
