@@ -24,6 +24,7 @@
    - slack
    - vagrant
    - virtualbox
+   - docker
 
 # OS X config
 - block:
