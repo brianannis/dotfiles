@@ -22,6 +22,8 @@
    - coconutbattery
    - spotify
    - slack
+   - vagrant
+   - virtualbox
 
 # OS X config
 - block:
