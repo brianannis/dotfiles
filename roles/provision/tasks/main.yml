@@ -7,6 +7,7 @@
     - htop-osx
     - wget
     - tree
+    - cdrtools
 
 - name: Install development applications
   homebrew_cask:
@@ -19,12 +20,12 @@
    - dash
    - iterm2
    - sublime-text
-   - coconutbattery
    - spotify
    - slack
    - vagrant
-   - virtualbox
+   - vmware-fusion
    - docker
+   - dropbox
 
 # OS X config
 - block:
