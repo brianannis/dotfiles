@@ -24,8 +24,11 @@
    - slack
    - vagrant
    - vmware-fusion
+   - vmware-remote-console
    - docker
    - dropbox
+   - kitematic
+   - coconutbattery
 
 # OS X config
 - block:
