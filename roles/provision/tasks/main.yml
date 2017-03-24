@@ -78,6 +78,14 @@
       debug:
         msg: "There was an error accessing apm"
 
+- name: Create bash aliases
+  template:
+    src: bash_profile.j2
+    dest: "{{ ansible_env['HOME'] }}/.bash_profile"
+    owner: "{{ ansible_env['USER'] }}"
+    group: staff
+    mode: '0644'
+
 # Sublime config
 # - name: Generate Sublime user config
 #   template:
