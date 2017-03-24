@@ -9,7 +9,6 @@
     - tree
     - cdrtools
     - redis
-    - android-platform-tools
     - awscli
 
 - name: Install development applications
