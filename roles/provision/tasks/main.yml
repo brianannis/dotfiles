@@ -8,6 +8,8 @@
     - wget
     - tree
     - cdrtools
+    - redis
+    - android-platform-tools
 
 - name: Install development applications
   homebrew_cask:
