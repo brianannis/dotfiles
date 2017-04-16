@@ -1,0 +1,15 @@
+---
+# zsh config
+- name: Install oh-my-zsh
+  shell: curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+  args:
+    creates: ~/.oh-my-zsh
+  when: lookup('env','TRAVIS') != 'true'
+
+- name: Generate zsh config
+  template:
+    src: zshrc.j2
+    dest: ~/.zshrc
+    mode: 0644
+    owner: "{{ ansible_env['USER'] }}"
+  when: lookup('env','TRAVIS') != 'true'

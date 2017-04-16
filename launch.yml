@@ -3,3 +3,4 @@
   gather_facts: yes
   roles:
     - { role: provision, tags: 'provision'}
+    - { role: zsh, tags: 'zsh'}
