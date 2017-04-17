@@ -72,7 +72,7 @@
 # Atom config
 - block:
     - name: Install atom packages
-      shell: /Applications/Atom.app/Contents/Resources/app/apm/bin/apm install --packages-file atom-packages
+      shell: /Applications/Atom.app/Contents/Resources/app/apm/bin/apm install sync-settings@0.8.1
   rescue:
     - name: apm not availible
       debug:
