@@ -9,7 +9,6 @@
     - tree
     - cdrtools
     - redis
-    - awscli
 
 - name: Install development applications
   homebrew_cask:
@@ -101,3 +100,8 @@
     repo: https://github.com/bahlo/iterm-colors.git
     dest: "{{ ansible_env['HOME'] }}/development/iterm-colors"
     version: master
+
+- name: Install python packages
+  pip:
+    name: awscli
+    state: present
