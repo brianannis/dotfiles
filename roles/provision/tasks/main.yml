@@ -31,6 +31,7 @@
    - kitematic
    - coconutbattery
    - android-platform-tools
+   - hyper
 
 # OS X config
 - block:
@@ -100,6 +101,12 @@
     repo: https://github.com/bahlo/iterm-colors.git
     dest: "{{ ansible_env['HOME'] }}/development/iterm-colors"
     version: master
+
+- name: Copy hyper config
+  copy:
+    src: .hyper.js
+    dest: "{{ ansible_env['HOME'] }}/.hyper.js"
+    mode: '0644'
 
 - name: Install python packages
   pip:
