@@ -24,6 +24,7 @@
    - spotify
    - slack
    - vagrant
+   - vagrant-vmware-utility
    - vmware-fusion
    - vmware-remote-console
    - docker
@@ -32,6 +33,10 @@
    - coconutbattery
    - android-platform-tools
    - hyper
+   - ccmenu
+   - insomnia
+   - the-unarchiver
+   - sensiblesidebuttons
 
 # OS X config
 - block:
