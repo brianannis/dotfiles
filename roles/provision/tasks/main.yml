@@ -1,7 +1,7 @@
 ---
 - name: Install common unix tools
   homebrew:
-    name: ['htop-osx', 'wget', 'tree', 'cdrtools', 'redis']
+    name: ['htop-osx', 'wget', 'tree', 'cdrtools', 'kubernetes-cli', 'aws-iam-authenticator', 'eksctl']
     state: present
 
 - name: Install development applications
