@@ -8,8 +8,13 @@ osx_image: xcode11
 before_install:
   - brew update
 
+addons:
+  homebrew:
+    packages:
+    - eksctl
+
 script:
   # Basic role syntax check
-  #- ansible-playbook roles/provision/tests/test.yml -i roles/provision/tests/inventory --syntax-check
+  # - ansible-playbook roles/provision/tests/test.yml -i roles/provision/tests/inventory --syntax-check
   - chmod a+x bootstrap.sh
   - ./bootstrap.sh
