@@ -1,6 +1,6 @@
 ---
-os:
-  - osx
+os: osx
+osx_image: xcode11
 
 # Use the new container infrastructure
 #sudo: false
