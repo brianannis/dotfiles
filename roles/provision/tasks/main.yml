@@ -1,7 +1,12 @@
 ---
+
+- name: Install weaveworks tap
+  homebrew_tap:
+    name: weaveworks/tap
+
 - name: Install common unix tools
   homebrew:
-    name: ['htop-osx', 'wget', 'tree', 'cdrtools', 'kubernetes-cli', 'aws-iam-authenticator', 'eksctl', 'hey']
+    name: ['htop-osx', 'wget', 'tree', 'cdrtools', 'kubernetes-cli', 'aws-iam-authenticator', 'weaveworks/tap/eksctl', 'hey']
     state: present
 
 - name: Install development applications
