@@ -1,4 +1,3 @@
-## bump
 name: Main workflow
 on: [push]
 jobs:
