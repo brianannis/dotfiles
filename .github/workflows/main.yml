@@ -9,6 +9,6 @@ jobs:
         uses: actions/checkout@master
 
       - name: Run bootstrap
-        run: |
+        run:|
           chmod a+x bootstrap.sh
           ./bootstrap.sh
