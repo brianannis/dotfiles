@@ -9,9 +9,12 @@
     name: ['htop-osx', 'wget', 'tree', 'cdrtools', 'kubernetes-cli', 'aws-iam-authenticator', 'weaveworks/tap/eksctl', 'hey']
     state: present
 
+- name: list
+  shell: brew cask list
+
 - homebrew_cask:
     name: google-chrome
-    state: absent
+    state: upgraded
 
 - name: Install development applications
   homebrew_cask:
