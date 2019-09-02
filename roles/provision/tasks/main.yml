@@ -9,6 +9,10 @@
     name: ['htop-osx', 'wget', 'tree', 'cdrtools', 'kubernetes-cli', 'aws-iam-authenticator', 'weaveworks/tap/eksctl', 'hey']
     state: present
 
+- homebrew_cask:
+    name: google-chrome
+    state: absent
+
 - name: Install development applications
   homebrew_cask:
     name: ['google-chrome', 'atom', 'github', 'dash', 'iterm2', 'sublime-text', 'spotify', 'slack', 'vmware-fusion', 'vmware-remote-console', 'docker', 'coconutbattery', 'android-platform-tools', 'hyper', 'ccmenu', 'insomnia', 'the-unarchiver', 'sensiblesidebuttons']
