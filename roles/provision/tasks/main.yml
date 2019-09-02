@@ -9,8 +9,9 @@
     name: ['htop-osx', 'wget', 'tree', 'cdrtools', 'kubernetes-cli', 'aws-iam-authenticator', 'weaveworks/tap/eksctl', 'hey']
     state: present
 
-- name: Clean cache
-  shell: brew cleanup
+- name: Update homebrew
+  homebrew:
+    update_homebrew: yes
   when: lookup('env','GITHUB_REPOSITORY') == 'brianannis/dotfiles'
 
 - name: Install development applications
