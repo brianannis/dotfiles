@@ -11,7 +11,7 @@
 
 - name: Clean cache
   shell: brew cleanup
-  when: "{{ lookup('env','GITHUB_REPOSITORY') }} == 'brianannis/dotfiles'"
+  when: lookup('env','GITHUB_REPOSITORY') == 'brianannis/dotfiles'
 
 - name: Install development applications
   homebrew_cask:
