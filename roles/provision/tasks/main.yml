@@ -9,12 +9,9 @@
     name: ['htop-osx', 'wget', 'tree', 'cdrtools', 'kubernetes-cli', 'aws-iam-authenticator', 'weaveworks/tap/eksctl', 'hey']
     state: present
 
-- name: list
-  shell: brew cask list
-
-- homebrew_cask:
-    name: google-chrome
-    state: upgraded
+- name: Clean cache
+  shell: brew cleanup
+  when: "{{ lookup('env','GITHUB_REPOSITORY') }}" == 'brianannis/dotfiles'
 
 - name: Install development applications
   homebrew_cask:
