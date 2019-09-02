@@ -11,27 +11,8 @@
 
 - name: Install development applications
   homebrew_cask:
-    name: "{{ item }}"
+    name: ['google-chrome', 'atom', 'github', 'dash', 'iterm2', 'sublime-text', 'spotify', 'slack', 'vmware-fusion', 'vmware-remote-console', 'docker', 'coconutbattery', 'android-platform-tools', 'hyper', 'ccmenu', 'insomnia', 'the-unarchiver', 'sensiblesidebuttons']
     state: present
-  with_items:
-   - google-chrome
-   - atom
-   - github
-   - dash
-   - iterm2
-   - sublime-text
-   - spotify
-   - slack
-   - vmware-fusion
-   - vmware-remote-console
-   - docker
-   - coconutbattery
-   - android-platform-tools
-   - hyper
-   - ccmenu
-   - insomnia
-   - the-unarchiver
-   - sensiblesidebuttons
 
 # OS X config
 - block:
