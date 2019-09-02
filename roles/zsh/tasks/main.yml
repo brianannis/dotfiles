@@ -4,7 +4,7 @@
   shell: curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
   args:
     creates: ~/.oh-my-zsh
-  when: lookup('env','TRAVIS') != 'true'
+  when: (lookup('env','TRAVIS') != 'true') or (lookup('env','GITHUB_REPOSITORY') == 'brianannis/dotfiles')
 
 - name: Generate zsh config
   template:
@@ -12,4 +12,4 @@
     dest: ~/.zshrc
     mode: 0644
     owner: "{{ ansible_env['USER'] }}"
-  when: lookup('env','TRAVIS') != 'true'
+  when: (lookup('env','TRAVIS') != 'true') or (lookup('env','GITHUB_REPOSITORY') == 'brianannis/dotfiles')
