@@ -8,6 +8,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
+      - name: setup ruby env
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.6'
+
+      - name: lint yaml set
+        run: |
+          gem install yaml-lint
+          yaml-lint -i $GITHUB_WORKSPACE
+
       - name: Run bootstrap
         run: |
           chmod a+x bootstrap.sh
