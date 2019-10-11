@@ -22,3 +22,7 @@ jobs:
         run: |
           chmod a+x bootstrap.sh
           ./bootstrap.sh
+
+      - name: Check alias
+        run: |
+          cat ~/.bash_completion
