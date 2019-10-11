@@ -1,10 +1,33 @@
+export PS1="▶:\[\033[01;34m\]\W\[\033[00m\] "
+export ITERM2_SQUELCH_MARK=0
+export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+
 alias hs='history | grep'
 alias ll='ls -lart'
 alias econf='atom ~/.ssh/config'
 
+## ansible
 alias ap='ansible-playbook'
 alias ag='ansible-galaxy init'
 alias av='ansible-vault edit'
 
-alias dcu='docker-compose up -d'
-alias dcd='docker-compose down'
+## cluster
+alias cluster-local='kubectl config use-context docker-for-desktop'
+
+## kube
+alias get='kubectl get'
+alias describe='kubectl describe'
+alias apply='kubectl apply'
+alias namespace='kubectl config set-context --current --namespace'
+
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
+## install iterm shell integration
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+iterm2_print_user_vars() {
+KUBECONTEXT=$(CTX=$(kubectl config current-context) 2> /dev/null;if [ $? -eq 0 ]; then echo $CTX;fi)
+KUBENAMESPACE=$(KNS=$(kubectl config view --minify --output 'jsonpath={..namespace}') 2> /dev/null;if [ $? -eq 0 ]; then echo $KNS;fi)
+iterm2_set_user_var kubeContext $KUBECONTEXT
+iterm2_set_user_var kubeNamespace $KUBENAMESPACE
+}

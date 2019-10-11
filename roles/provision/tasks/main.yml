@@ -6,7 +6,7 @@
 
 - name: Install common unix tools
   homebrew:
-    name: ['htop-osx', 'wget', 'tree', 'cdrtools', 'kubernetes-cli', 'aws-iam-authenticator', 'weaveworks/tap/eksctl', 'hey']
+    name: ['htop-osx', 'wget', 'tree', 'cdrtools', 'kubernetes-cli', 'aws-iam-authenticator', 'weaveworks/tap/eksctl', 'hey', 'bash', 'bash-completion@2']
     state: present
 
 - name: Update homebrew
@@ -106,6 +106,22 @@
     repo: https://github.com/bahlo/iterm-colors.git
     dest: "{{ ansible_env['HOME'] }}/development/iterm-colors"
     version: master
+
+- name: Install complete-alias
+  get_url:
+    url: https://raw.githubusercontent.com/cykerway/complete-alias/master/bash_completion.sh
+    dest: "{{ ansible_env['HOME'] }}/.bash_completion"
+
+- name: Insert/Update "Match User" configuration block in /etc/ssh/sshd_config
+  blockinfile:
+    path: "{{ ansible_env['HOME'] }}/.bash_completion"
+    block: |
+      complete -F _complete_alias get
+      complete -F _complete_alias describe
+      complete -F _complete_alias apply
+      complete -F _complete_alias namespace
+
+## chsh after run to upgrade from bash 3.x to 5.x
 
 - name: Copy hyper config
   copy:
