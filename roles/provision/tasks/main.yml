@@ -128,7 +128,7 @@
   register: eksctl_completion
 
 - set_fact:
-    eksctl_completion_contents: {{ eksctl_completion.stdout }}
+    eksctl_completion_contents: "{{ eksctl_completion.stdout }}"
 
 - name: Create eksctl bash completion
   template:
