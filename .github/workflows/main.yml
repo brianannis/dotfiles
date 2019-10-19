@@ -22,4 +22,3 @@ jobs:
         run: |
           chmod a+x bootstrap.sh
           ./bootstrap.sh
-          cat /usr/local/etc/bash_completion.d/eksctl
