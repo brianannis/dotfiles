@@ -123,6 +123,21 @@
 
 ## chsh after run to upgrade from bash 3.x to 5.x
 
+- name: Install eksctl bash completion
+  shell: eksctl completion bash
+  register: eksctl_completion
+
+- set_fact:
+    eksctl_completion_contents: {{ eksctl_completion.stdout }}
+
+- name: Create eksctl bash completion
+  template:
+    src: eksctl.j2
+    dest: /usr/local/etc/bash_completion.d/eksctl
+    owner: "{{ ansible_env['USER'] }}"
+    group: staff
+    mode: '0755'
+
 - name: Copy hyper config
   copy:
     src: .hyper.js
