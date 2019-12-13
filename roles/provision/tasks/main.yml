@@ -28,7 +28,7 @@
    - spotify
    - slack
    - vmware-fusion
-   - vmware-remote-console
+   # - vmware-remote-console
    - docker
    - coconutbattery
    - android-platform-tools
@@ -37,6 +37,8 @@
    - insomnia
    - the-unarchiver
    - sensiblesidebuttons
+   - keybase
+   - tunnelblick
 
 # OS X config
 - block:
@@ -121,7 +123,8 @@
       complete -F _complete_alias apply
       complete -F _complete_alias namespace
 
-## chsh after run to upgrade from bash 3.x to 5.x
+## append /usr/local/bin/bash to /etc/shells
+## chsh to /usr/local/bin/bash after run to upgrade from bash 3.x to 5.x
 
 - name: Install eksctl bash completion
   shell: eksctl completion bash
@@ -146,5 +149,5 @@
 
 - name: Install python packages
   pip:
-    name: awscli
+    name: ['awscli', 'boto3', 'netaddr']
     state: present
