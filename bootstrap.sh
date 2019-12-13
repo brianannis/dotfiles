@@ -33,14 +33,14 @@ fi
 
 if ! [ -x /usr/local/bin/python ]; then
    echo -e "\033[0;33m Upgrading pip \033[0m"
-   pip2 install --upgrade pip
+   pip3 install --upgrade pip
 else
   echo -e "\033[0;32m pip upgraded \033[0m"
 fi
 
 if ! [ -x /usr/local/bin/ansible ]; then
    echo -e "\033[0;33m Installing ansible \033[0m"
-   pip2 install ansible
+   pip3 install ansible
 else
   echo -e "\033[0;32m ansible installed \033[0m"
 fi
