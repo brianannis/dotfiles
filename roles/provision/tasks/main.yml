@@ -122,6 +122,7 @@
       complete -F _complete_alias describe
       complete -F _complete_alias apply
       complete -F _complete_alias namespace
+      complete -F _complete_alias delete
 
 ## append /usr/local/bin/bash to /etc/shells
 ## chsh to /usr/local/bin/bash after run to upgrade from bash 3.x to 5.x

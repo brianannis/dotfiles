@@ -5,6 +5,10 @@ export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 alias hs='history | grep'
 alias ll='ls -lart'
 alias econf='atom ~/.ssh/config'
+connect() {
+	EC2TARGET=$(aws ec2 describe-instances --instance-ids $1 --query "Reservations[*].Instances[*].PrivateIpAddress" --output text)
+	ssh $EC2TARGET
+}
 
 ## ansible
 alias ap='ansible-playbook'
@@ -17,8 +21,12 @@ alias cluster-local='kubectl config use-context docker-for-desktop'
 ## kube
 alias get='kubectl get'
 alias describe='kubectl describe'
+alias delete='kubectl delete'
 alias apply='kubectl apply'
 alias namespace='kubectl config set-context --current --namespace'
+
+## mouse dpi
+alias work-dpi='defaults write -g com.apple.mouse.scaling .800'
 
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
