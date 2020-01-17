@@ -27,7 +27,7 @@
    - sublime-text
    - spotify
    - slack
-   - vmware-fusion
+   # - vmware-fusion
    # - vmware-remote-console
    - docker
    - coconutbattery
