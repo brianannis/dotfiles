@@ -111,7 +111,7 @@
 
 - name: Install complete-alias
   get_url:
-    url: https://raw.githubusercontent.com/cykerway/complete-alias/master/bash_completion.sh
+    url: https://raw.githubusercontent.com/cykerway/complete-alias/master/complete_alias
     dest: "{{ ansible_env['HOME'] }}/.bash_completion"
 
 - name: Insert/Update "Match User" configuration block in /etc/ssh/sshd_config
