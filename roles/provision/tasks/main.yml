@@ -6,7 +6,7 @@
 
 - name: Install common unix tools
   homebrew:
-    name: ['htop-osx', 'wget', 'tree', 'cdrtools', 'kubernetes-cli', 'aws-iam-authenticator', 'weaveworks/tap/eksctl', 'hey', 'bash', 'bash-completion@2']
+    name: ['htop-osx', 'wget', 'tree', 'cdrtools', 'kubernetes-cli', 'aws-iam-authenticator', 'weaveworks/tap/eksctl', 'hey', 'stern', 'bash', 'bash-completion@2', 'ghz', 'cli53', 'telnet']
     state: present
 
 - name: Update homebrew
@@ -31,14 +31,16 @@
    # - vmware-remote-console
    - docker
    - coconutbattery
-   - android-platform-tools
    - hyper
+   - macdown
+   - postico
+   - balenaetcher
    - ccmenu
    - insomnia
    - the-unarchiver
-   - sensiblesidebuttons
+   # - sensiblesidebuttons
    - keybase
-   - tunnelblick
+   - viscosity
 
 # OS X config
 - block:
@@ -127,20 +129,22 @@
 ## append /usr/local/bin/bash to /etc/shells
 ## chsh to /usr/local/bin/bash after run to upgrade from bash 3.x to 5.x
 
-- name: Install eksctl bash completion
-  shell: eksctl completion bash
-  register: eksctl_completion
+## brewed eksctl does this automatically now
 
-- set_fact:
-    eksctl_completion_contents: "{{ eksctl_completion.stdout }}"
-
-- name: Create eksctl bash completion
-  template:
-    src: eksctl.j2
-    dest: /usr/local/etc/bash_completion.d/eksctl
-    owner: "{{ ansible_env['USER'] }}"
-    group: staff
-    mode: '0755'
+# - name: Install eksctl bash completion
+#   shell: eksctl completion bash
+#   register: eksctl_completion
+#
+# - set_fact:
+#     eksctl_completion_contents: "{{ eksctl_completion.stdout }}"
+#
+# - name: Create eksctl bash completion
+#   template:
+#     src: eksctl.j2
+#     dest: /usr/local/etc/bash_completion.d/eksctl
+#     owner: "{{ ansible_env['USER'] }}"
+#     group: staff
+#     mode: '0755'
 
 - name: Copy hyper config
   copy:
