@@ -118,12 +118,15 @@
     owner: "{{ ansible_env['USER'] }}"
     group: staff
     mode: '0644'
+  tags: iterm
 
 - name: Set iTerm preferences directory
   shell: defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "{{ ansible_env['HOME'] }}/Documents"
+  tags: iterm
 
 - name: Enable iTerm preferences loading
   shell: defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+  tags: iterm
 
 - name: Install complete-alias
   get_url:
