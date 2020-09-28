@@ -19,7 +19,7 @@
     name: "{{ item }}"
     state: present
   with_items:
-   # - google-chrome
+   - google-chrome
    - atom
    - github
    - dash
@@ -81,7 +81,7 @@
 # Atom config
 - block:
     - name: Install atom packages
-      shell: /Applications/Atom.app/Contents/Resources/app/apm/bin/apm install sync-settings@0.8.1
+      shell: /Applications/Atom.app/Contents/Resources/app/apm/bin/apm install sync-settings@5.0.1
   rescue:
     - name: apm not availible
       debug:
@@ -111,12 +111,29 @@
     dest: "{{ ansible_env['HOME'] }}/development/iterm-colors"
     version: master
 
+- name: Render iTerm preferences
+  template:
+    src: com.googlecode.iterm2.plist.j2
+    dest: "{{ ansible_env['HOME'] }}/Documents/com.googlecode.iterm2.plist"
+    owner: "{{ ansible_env['USER'] }}"
+    group: staff
+    mode: '0644'
+  tags: iterm
+
+- name: Set iTerm preferences directory
+  shell: defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "{{ ansible_env['HOME'] }}/Documents"
+  tags: iterm
+
+- name: Enable iTerm preferences loading
+  shell: defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+  tags: iterm
+
 - name: Install complete-alias
   get_url:
     url: https://raw.githubusercontent.com/cykerway/complete-alias/master/complete_alias
     dest: "{{ ansible_env['HOME'] }}/.bash_completion"
 
-- name: Insert/Update "Match User" configuration block in /etc/ssh/sshd_config
+- name: Add complete_aliases in bash_completion
   blockinfile:
     path: "{{ ansible_env['HOME'] }}/.bash_completion"
     block: |
@@ -125,26 +142,12 @@
       complete -F _complete_alias apply
       complete -F _complete_alias namespace
       complete -F _complete_alias delete
+      complete -C '/usr/local/bin/aws_completer' aws
 
 ## append /usr/local/bin/bash to /etc/shells
 ## chsh to /usr/local/bin/bash after run to upgrade from bash 3.x to 5.x
 
-## brewed eksctl does this automatically now
-
-# - name: Install eksctl bash completion
-#   shell: eksctl completion bash
-#   register: eksctl_completion
-#
-# - set_fact:
-#     eksctl_completion_contents: "{{ eksctl_completion.stdout }}"
-#
-# - name: Create eksctl bash completion
-#   template:
-#     src: eksctl.j2
-#     dest: /usr/local/etc/bash_completion.d/eksctl
-#     owner: "{{ ansible_env['USER'] }}"
-#     group: staff
-#     mode: '0755'
+## brewed eksctl installs bash completion automatically now
 
 - name: Copy hyper config
   copy:

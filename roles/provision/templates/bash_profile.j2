@@ -27,6 +27,7 @@ alias namespace='kubectl config set-context --current --namespace'
 
 ## mouse dpi
 alias work-dpi='defaults write -g com.apple.mouse.scaling .800'
+alias home-dpi='defaults write -g com.apple.mouse.scaling .5'
 
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
@@ -38,4 +39,7 @@ KUBECONTEXT=$(CTX=$(kubectl config current-context) 2> /dev/null;if [ $? -eq 0 ]
 KUBENAMESPACE=$(KNS=$(kubectl config view --minify --output 'jsonpath={..namespace}') 2> /dev/null;if [ $? -eq 0 ]; then echo $KNS;fi)
 iterm2_set_user_var kubeContext $KUBECONTEXT
 iterm2_set_user_var kubeNamespace $KUBENAMESPACE
+iterm2_set_user_var awsProfile $AWS_PROFILE
 }
+
+export AWS_PROFILE='default'
