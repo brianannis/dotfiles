@@ -122,6 +122,36 @@
       debug:
         msg: "There was an error accessing com.apple.dock"
 
+- block:
+    - name: Set column view in Finder (Requires restart)
+      osx_defaults:
+        domain: com.apple.Finder
+        key: FXPreferredViewStyle
+        type: string
+        value: clmv
+        state: present
+      tags: 'finder'
+
+  rescue:
+    - name: Finder view value not availible
+      debug:
+        msg: "There was an error accessing com.apple.Finder"
+
+- block:
+    - name: Set NewWindowTarget in Finder (Requires restart)
+      osx_defaults:
+        domain: com.apple.Finder
+        key: NewWindowTarget
+        type: string
+        value: PfHm
+        state: present
+      tags: 'finder'
+
+  rescue:
+    - name: Finder NewWindowTarget value not availible
+      debug:
+        msg: "There was an error accessing com.apple.Finder"
+
 # VCS config
 - name: Create VCS folder
   file:
