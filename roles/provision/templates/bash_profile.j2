@@ -9,6 +9,10 @@ connect() {
 	EC2TARGET=$(aws ec2 describe-instances --instance-ids $1 --query "Reservations[*].Instances[*].PrivateIpAddress" --output text)
 	ssh $EC2TARGET
 }
+connect-ec2() {
+	EC2TARGET=$(aws ec2 describe-instances --instance-ids $1 --query "Reservations[*].Instances[*].PrivateIpAddress" --output text)
+	ssh ec2-user@$EC2TARGET
+}
 
 ## ansible
 alias ap='ansible-playbook'
