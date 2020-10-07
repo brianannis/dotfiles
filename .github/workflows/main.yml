@@ -19,7 +19,8 @@ jobs:
           yaml-lint -i $GITHUB_WORKSPACE
 
       - name: Run bootstrap
+        env:
+          ANSIBLE_FORCE_COLOR: True
         run: |
           chmod a+x bootstrap.sh
           ./bootstrap.sh
-
