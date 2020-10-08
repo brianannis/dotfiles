@@ -28,7 +28,6 @@
    - spotify
    - slack
    # - vmware-fusion
-   # - vmware-remote-console
    - docker
    - coconutbattery
    - hyper
@@ -71,6 +70,87 @@
     - name: Autocorrect value not availible
       debug:
         msg: "There was an error accessing NSAutomaticSpellingCorrectionEnabled"
+
+- block:
+    - name: Set dock size (Requires restart)
+      osx_defaults:
+        domain: com.apple.dock
+        key: tilesize
+        type: float
+        value: 37
+        state: present
+      tags: 'dock'
+
+  rescue:
+    - name: Dock size value not availible
+      debug:
+        msg: "There was an error accessing com.apple.dock"
+
+- block:
+    - name: Set dock recent (Requires restart)
+      osx_defaults:
+        domain: com.apple.dock
+        key: show-recents
+        type: bool
+        value: false
+        state: present
+      tags: 'dock'
+
+  rescue:
+    - name: Dock recents value not availible
+      debug:
+        msg: "There was an error accessing com.apple.dock"
+
+- block:
+    - name: Set com.apple.systemuiserver (Requires restart)
+      osx_defaults:
+        domain: com.apple.systemuiserver
+        key: menuExtras
+        type: array
+        value:
+          - "/System/Library/CoreServices/Menu Extras/User.menu"
+          - "/System/Library/CoreServices/Menu Extras/Clock.menu"
+          - "/System/Library/CoreServices/Menu Extras/Battery.menu"
+          - "/System/Library/CoreServices/Menu Extras/AirPort.menu"
+          - "/System/Library/CoreServices/Menu Extras/VPN.menu"
+          - "/System/Library/CoreServices/Menu Extras/Bluetooth.menu"
+        state: present
+      tags: 'dock'
+
+  rescue:
+    - name: Dock recents value not availible
+      debug:
+        msg: "There was an error accessing com.apple.dock"
+
+- block:
+    - name: Set column view in Finder (Requires restart)
+      osx_defaults:
+        domain: com.apple.Finder
+        key: FXPreferredViewStyle
+        type: string
+        value: clmv
+        state: present
+      tags: 'finder'
+
+  rescue:
+    - name: Finder view value not availible
+      debug:
+        msg: "There was an error accessing com.apple.Finder"
+
+- block:
+    - name: Set NewWindowTarget in Finder (Requires restart)
+      osx_defaults:
+        domain: com.apple.Finder
+        key: NewWindowTarget
+        type: string
+        value: PfHm
+        state: present
+      tags: 'finder'
+
+  rescue:
+    - name: Finder NewWindowTarget value not availible
+      debug:
+        msg: "There was an error accessing com.apple.Finder"
 
 # VCS config
 - name: Create VCS folder
