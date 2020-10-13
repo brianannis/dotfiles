@@ -237,5 +237,5 @@
 
 - name: Install python packages
   pip:
-    name: ['boto3', 'netaddr','openshift','kubernetes-validate']
+    name: ['boto3', 'netaddr']
     state: present
