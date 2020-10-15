@@ -24,7 +24,7 @@ else
    echo -e "\033[0;32m brew installed \033[0m"
 fi
 
-if ! [ -x /usr/local/bin/python2 ]; then
+if ! [ -x /usr/local/bin/python3 ]; then
    echo -e "\033[0;33m Installing homebrew python \033[0m"
    brew install python
 else

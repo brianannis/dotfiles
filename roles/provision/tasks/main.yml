@@ -6,7 +6,7 @@
 
 - name: Install common unix tools
   homebrew:
-    name: ['htop-osx', 'wget', 'tree', 'cdrtools', 'kubernetes-cli', 'aws-iam-authenticator', 'weaveworks/tap/eksctl', 'hey', 'stern', 'bash', 'bash-completion@2', 'ghz', 'cli53', 'telnet']
+    name: [ 'awscli', 'htop-osx', 'wget', 'tree', 'cdrtools', 'kubernetes-cli', 'aws-iam-authenticator', 'weaveworks/tap/eksctl', 'hey', 'stern', 'bash', 'bash-completion@2', 'ghz', 'cli53', 'telnet']
     state: present
 
 - name: Update homebrew
@@ -237,5 +237,5 @@
 
 - name: Install python packages
   pip:
-    name: ['awscli', 'boto3', 'netaddr']
+    name: ['boto3', 'netaddr']
     state: present
