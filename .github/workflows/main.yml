@@ -2,8 +2,8 @@ name: Main workflow
 on: [push]
 jobs:
   one:
-    name: run e2e bootstrap
-    runs-on: macos-latest
+    name: syntax check
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@master
@@ -18,14 +18,12 @@ jobs:
           gem install yaml-lint
           yaml-lint -i $GITHUB_WORKSPACE
 
-      - name: Run bootstrap
-        env:
-          ANSIBLE_FORCE_COLOR: True
-        run: |
-          chmod a+x bootstrap.sh
-          ./bootstrap.sh
+      - name: cancel job
+        uses: andymckay/cancel-action@0.2
+        if: ${{ failure() }}
+
   two:
-    name: run non-app roles
+    name: run e2e bootstrap
     runs-on: macos-latest
     steps:
       - name: Checkout
@@ -35,9 +33,23 @@ jobs:
         env:
           ANSIBLE_FORCE_COLOR: True
         run: |
-          pip3 install ansible==2.9.13
-          ansible-playbook launch.yml --tags terminal
+          chmod a+x bootstrap.sh
+          ./bootstrap.sh
 
-      - name: cancel job
-        uses: andymckay/cancel-action@0.2
-        if: ${{ failure() }}
+  # three:
+  #   name: run non-app roles
+  #   runs-on: macos-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@master
+  #
+  #     - name: Run bootstrap
+  #       env:
+  #         ANSIBLE_FORCE_COLOR: True
+  #       run: |
+  #         pip3 install ansible==2.9.13
+  #         ansible-playbook launch.yml --tags terminal
+  #
+  #     - name: cancel job
+  #       uses: andymckay/cancel-action@0.2
+  #       if: ${{ failure() }}

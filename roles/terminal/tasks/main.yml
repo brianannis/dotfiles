@@ -73,7 +73,7 @@
     path: "/etc/shells"
     block: |
       /usr/local/bin/bash
-  # when: ansible_env.GITHUB_REPOSITORY is not defined
+  when: ansible_env.GITHUB_REPOSITORY is not defined
 
 - name: change shell
   shell: chsh -s /usr/local/bin/bash
@@ -81,8 +81,6 @@
   when: ansible_env.GITHUB_REPOSITORY is not defined
 
 ## brewed eksctl installs bash completion automatically now
-
-## TODO add iterm shell integration
 
 - name: copy hyper config
   copy:
