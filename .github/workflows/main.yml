@@ -18,7 +18,7 @@ jobs:
           gem install yaml-lint
           yaml-lint -i $GITHUB_WORKSPACE
   two:
-    name: run bootstrap
+    name: run e2e bootstrap
     runs-on: macos-latest
     steps:
       - name: Checkout
@@ -31,7 +31,7 @@ jobs:
           chmod a+x bootstrap.sh
           ./bootstrap.sh
   three:
-    name: run select roles
+    name: run atom role
     runs-on: macos-latest
     steps:
       - name: Checkout
@@ -43,5 +43,29 @@ jobs:
         run: |
           pip3 install ansible==2.9.13
           ansible-playbook launch.yml --tags atom
+  four:
+    name: run sublime role
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Run bootstrap
+        env:
+          ANSIBLE_FORCE_COLOR: True
+        run: |
+          pip3 install ansible==2.9.13
           ansible-playbook launch.yml --tags sublime
+  five:
+    name: run terminal role
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Run bootstrap
+        env:
+          ANSIBLE_FORCE_COLOR: True
+        run: |
+          pip3 install ansible==2.9.13
           ansible-playbook launch.yml --tags terminal
