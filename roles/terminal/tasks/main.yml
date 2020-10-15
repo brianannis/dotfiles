@@ -57,17 +57,17 @@
 ## append /usr/local/bin/bash to /etc/shells
 ## chsh to /usr/local/bin/bash after run to upgrade from bash 3.x to 5.x
 
-# - name: add bash 5 to shells
-#   blockinfile:
-#     path: "/etc/shells"
-#     block: |
-#       /usr/local/bin/bash
-#   when: ansible_env.GITHUB_REPOSITORY is not defined
-#
-# - name: change shell
-#   shell: chsh -s /usr/local/bin/bash
-#   become: no
-#   when: ansible_env.GITHUB_REPOSITORY is not defined
+- name: add bash 5 to shells
+  blockinfile:
+    path: "/etc/shells"
+    block: |
+      /usr/local/bin/bash
+  when: ansible_env.GITHUB_REPOSITORY is not defined
+
+- name: change shell
+  shell: chsh -s /usr/local/bin/bash
+  become: no
+  when: ansible_env.GITHUB_REPOSITORY is not defined
 
 ## brewed eksctl installs bash completion 2 automatically now
 
