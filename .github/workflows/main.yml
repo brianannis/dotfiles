@@ -37,3 +37,7 @@ jobs:
         run: |
           pip3 install ansible==2.9.13
           ansible-playbook launch.yml --tags terminal
+
+      - name: cancel job
+        uses: andymckay/cancel-action@0.2
+        if: ${{ failure() }}
