@@ -1,9 +1,9 @@
 name: Main workflow
 on: [push]
 jobs:
-  macOS1:
+  one:
     name: syntax check
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@master
@@ -17,7 +17,7 @@ jobs:
         run: |
           gem install yaml-lint
           yaml-lint -i $GITHUB_WORKSPACE
-  macOS2:
+  two:
     name: run bootstrap
     runs-on: macos-latest
     steps:
