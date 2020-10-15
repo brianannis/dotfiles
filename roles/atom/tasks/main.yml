@@ -1,6 +1,11 @@
 ---
 # tasks file for atom
 
+- name: install atom application
+  homebrew_cask:
+    name: 'atom'
+    state: present
+
 - block:
     - name: Install atom packages
       shell: /Applications/Atom.app/Contents/Resources/app/apm/bin/apm install sync-settings@5.0.1

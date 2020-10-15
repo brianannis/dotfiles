@@ -1,6 +1,11 @@
 ---
 # tasks file for terminal
 
+- name: install iterm2
+  homebrew_cask:
+    name: 'iterm2'
+    state: present
+
 - name: create bash aliases
   template:
     src: bash_profile.j2

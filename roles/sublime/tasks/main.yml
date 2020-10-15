@@ -1,6 +1,11 @@
 ---
 # tasks file for sublime
 
+- name: install sublime-text application
+  homebrew_cask:
+    name: 'sublime-text'
+    state: present
+
 - block:
     - name: remove from quarantine
       shell: xattr -d com.apple.quarantine /Applications/Sublime\ Text.app

@@ -1,31 +1,28 @@
 ---
 # tasks file for apps
 
-- name: Install weaveworks tap
+- name: install weaveworks tap
   homebrew_tap:
     name: weaveworks/tap
 
-- name: Install common unix tools
+- name: install common unix tools
   homebrew:
     name: ['awscli', 'htop-osx', 'wget', 'tree', 'cdrtools', 'kubernetes-cli', 'aws-iam-authenticator', 'weaveworks/tap/eksctl', 'hey', 'stern', 'bash', 'bash-completion@2', 'ghz', 'cli53', 'telnet']
     state: present
 
-- name: Update homebrew
+- name: update homebrew
   homebrew:
     update_homebrew: yes
   when: lookup('env','GITHUB_REPOSITORY') == 'brianannis/dotfiles'
 
-- name: Install development applications
+- name: install development applications
   homebrew_cask:
     name: "{{ item }}"
     state: present
   with_items:
    - google-chrome
-   - atom
    - github
    - dash
-   - iterm2
-   - sublime-text
    - spotify
    - slack
    # - vmware-fusion
