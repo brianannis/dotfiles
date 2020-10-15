@@ -2,7 +2,7 @@ name: Main workflow
 on: [push]
 jobs:
   one:
-    name: syntax check
+    name: run e2e bootstrap
     runs-on: macos-latest
     steps:
       - name: Checkout
@@ -36,4 +36,4 @@ jobs:
           ANSIBLE_FORCE_COLOR: True
         run: |
           pip3 install ansible==2.9.13
-          ansible-playbook launch.yml --skip-tags apps
+          ansible-playbook launch.yml --tags terminal
