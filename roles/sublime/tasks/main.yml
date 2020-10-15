@@ -13,6 +13,10 @@
 - name: open app
   shell: open /Applications/Sublime\ Text.app
 
+- name: Pause for 30 seconds
+  pause:
+    seconds: 30
+
 - name: close app
   shell: pkill -x "Sublime Text"
 

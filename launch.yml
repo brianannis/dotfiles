@@ -6,4 +6,4 @@
     - { role: provision, tags: 'provision'}
     - { role: terminal, tags: 'terminal'}
     - { role: atom, tags: 'atom'}
-    # - { role: sublime, tags: 'sublime'}
+    - { role: sublime, tags: 'sublime'}
