@@ -43,6 +43,12 @@
   shell: defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
   tags: iterm
 
+- name: install shell integration
+  get_url:
+    url: https://raw.githubusercontent.com/gnachman/iTerm2/master/Resources/shell_integration/iterm2_shell_integration.bash
+    dest: "{{ ansible_env['HOME'] }}/.iterm2_shell_integration.bash"
+    mode: '0755'
+
 - name: install complete-alias
   get_url:
     url: https://raw.githubusercontent.com/cykerway/complete-alias/master/complete_alias

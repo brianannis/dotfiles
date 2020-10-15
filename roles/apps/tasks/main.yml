@@ -38,3 +38,4 @@
    # - sensiblesidebuttons
    - keybase
    - viscosity
+  ignore_errors: yes
