@@ -1,0 +1,10 @@
+---
+# tasks file for atom
+
+- block:
+    - name: Install atom packages
+      shell: /Applications/Atom.app/Contents/Resources/app/apm/bin/apm install sync-settings@5.0.1
+  rescue:
+    - name: apm not availible
+      debug:
+        msg: "There was an error accessing apm"

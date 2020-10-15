@@ -1,0 +1,78 @@
+---
+# tasks file for terminal
+
+- name: create bash aliases
+  template:
+    src: bash_profile.j2
+    dest: "{{ ansible_env['HOME'] }}/.bash_profile"
+    owner: "{{ ansible_env['USER'] }}"
+    group: staff
+    mode: '0644'
+
+# VCS config
+- name: create source folder
+  file:
+    path: "{{ ansible_env['HOME'] }}/development"
+    state: directory
+
+- name: download iterm-colors
+  git:
+    repo: https://github.com/bahlo/iterm-colors.git
+    dest: "{{ ansible_env['HOME'] }}/development/iterm-colors"
+    version: master
+
+- name: render iterm preferences
+  template:
+    src: com.googlecode.iterm2.plist.j2
+    dest: "{{ ansible_env['HOME'] }}/Documents/com.googlecode.iterm2.plist"
+    owner: "{{ ansible_env['USER'] }}"
+    group: staff
+    mode: '0644'
+  tags: iterm
+
+- name: set iterm preferences directory
+  shell: defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "{{ ansible_env['HOME'] }}/Documents"
+  tags: iterm
+
+- name: enable iterm preferences loading
+  shell: defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+  tags: iterm
+
+- name: install complete-alias
+  get_url:
+    url: https://raw.githubusercontent.com/cykerway/complete-alias/master/complete_alias
+    dest: "{{ ansible_env['HOME'] }}/.bash_completion"
+
+- name: add complete_aliases in bash_completion
+  blockinfile:
+    path: "{{ ansible_env['HOME'] }}/.bash_completion"
+    block: |
+      complete -F _complete_alias get
+      complete -F _complete_alias describe
+      complete -F _complete_alias apply
+      complete -F _complete_alias namespace
+      complete -F _complete_alias delete
+      # complete -C '/usr/local/bin/aws_completer' aws
+
+## append /usr/local/bin/bash to /etc/shells
+## chsh to /usr/local/bin/bash after run to upgrade from bash 3.x to 5.x
+
+# - name: add bash 5 to shells
+#   blockinfile:
+#     path: "/etc/shells"
+#     block: |
+#       /usr/local/bin/bash
+#   when: ansible_env.GITHUB_REPOSITORY is not defined
+#
+# - name: change shell
+#   shell: chsh -s /usr/local/bin/bash
+#   become: no
+#   when: ansible_env.GITHUB_REPOSITORY is not defined
+
+## brewed eksctl installs bash completion 2 automatically now
+
+- name: copy hyper config
+  copy:
+    src: .hyper.js
+    dest: "{{ ansible_env['HOME'] }}/.hyper.js"
+    mode: '0644'

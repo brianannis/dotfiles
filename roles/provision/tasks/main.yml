@@ -1,49 +1,7 @@
 ---
-
-- name: Install weaveworks tap
-  homebrew_tap:
-    name: weaveworks/tap
-
-- name: Install common unix tools
-  homebrew:
-    name: [ 'awscli', 'htop-osx', 'wget', 'tree', 'cdrtools', 'kubernetes-cli', 'aws-iam-authenticator', 'weaveworks/tap/eksctl', 'hey', 'stern', 'bash', 'bash-completion@2', 'ghz', 'cli53', 'telnet']
-    state: present
-
-- name: Update homebrew
-  homebrew:
-    update_homebrew: yes
-  when: lookup('env','GITHUB_REPOSITORY') == 'brianannis/dotfiles'
-
-- name: Install development applications
-  homebrew_cask:
-    name: "{{ item }}"
-    state: present
-  with_items:
-   - google-chrome
-   - atom
-   - github
-   - dash
-   - iterm2
-   - sublime-text
-   - spotify
-   - slack
-   # - vmware-fusion
-   - docker
-   - coconutbattery
-   - hyper
-   - macdown
-   - postico
-   - balenaetcher
-   - ccmenu
-   - insomnia
-   - the-unarchiver
-   # - sensiblesidebuttons
-   - keybase
-   - viscosity
-
 # OS X config
 - block:
-    - name: Disable natural scrolling (Requires restart)
+    - name: disable natural scrolling
       osx_defaults:
         domain: NSGlobalDomain
         key: com.apple.swipescrolldirection
@@ -53,11 +11,12 @@
       tags: 'osx'
 
   rescue:
-    - name: Scrolling value not availible
+    - name: scrolling value not availible
       debug:
         msg: "There was an error accessing com.apple.swipescrolldirection"
+        
 - block:
-    - name: Disable autocorrect (Requires restart)
+    - name: disable autocorrect
       osx_defaults:
         domain: NSGlobalDomain
         key: NSAutomaticSpellingCorrectionEnabled
@@ -67,12 +26,12 @@
       tags: 'osx'
 
   rescue:
-    - name: Autocorrect value not availible
+    - name: autocorrect value not availible
       debug:
         msg: "There was an error accessing NSAutomaticSpellingCorrectionEnabled"
 
 - block:
-    - name: Set dock size (Requires restart)
+    - name: set dock size
       osx_defaults:
         domain: com.apple.dock
         key: tilesize
@@ -87,7 +46,7 @@
         msg: "There was an error accessing com.apple.dock"
 
 - block:
-    - name: Set dock recent (Requires restart)
+    - name: Set dock recent
       osx_defaults:
         domain: com.apple.dock
         key: show-recents
@@ -97,12 +56,39 @@
       tags: 'dock'
 
   rescue:
-    - name: Dock recents value not availible
+    - name: dock recents value not availible
       debug:
         msg: "There was an error accessing com.apple.dock"
 
 - block:
-    - name: Set com.apple.systemuiserver (Requires restart)
+    - name: disable locale in com.apple.TextInputMenu
+      osx_defaults:
+        domain: com.apple.TextInputMenu
+        key: visible
+        type: int
+        value: "0"
+        state: present
+      tags: 'menu'
+
+    - name: disable airplay in com.apple.airplay
+      osx_defaults:
+        domain: com.apple.airplay
+        key: showInMenuBarIfPresent
+        type: bool
+        value: false
+        state: present
+      tags: 'menu'
+
+    - name: enable battery percentage in com.apple.menuextra.battery
+      osx_defaults:
+        domain: com.apple.menuextra.battery
+        key: ShowPercent
+        type: string
+        value: "YES"
+        state: present
+      tags: 'menu'
+
+    - name: set com.apple.systemuiserver
       osx_defaults:
         domain: com.apple.systemuiserver
         key: menuExtras
@@ -115,15 +101,15 @@
           - "/System/Library/CoreServices/Menu Extras/VPN.menu"
           - "/System/Library/CoreServices/Menu Extras/Bluetooth.menu"
         state: present
-      tags: 'dock'
+      tags: 'menu'
 
   rescue:
-    - name: Dock recents value not availible
+    - name: systemuiserver not availible
       debug:
-        msg: "There was an error accessing com.apple.dock"
+        msg: "There was an error accessing com.apple.systemuiserver"
 
 - block:
-    - name: Set column view in Finder (Requires restart)
+    - name: set column view in finder
       osx_defaults:
         domain: com.apple.Finder
         key: FXPreferredViewStyle
@@ -133,12 +119,12 @@
       tags: 'finder'
 
   rescue:
-    - name: Finder view value not availible
+    - name: finder view value not availible
       debug:
         msg: "There was an error accessing com.apple.Finder"
 
 - block:
-    - name: Set NewWindowTarget in Finder (Requires restart)
+    - name: set NewWindowTarget in finder
       osx_defaults:
         domain: com.apple.Finder
         key: NewWindowTarget
@@ -148,94 +134,26 @@
       tags: 'finder'
 
   rescue:
-    - name: Finder NewWindowTarget value not availible
+    - name: finder NewWindowTarget value not availible
       debug:
         msg: "There was an error accessing com.apple.Finder"
 
-# VCS config
-- name: Create VCS folder
-  file:
-    path: "{{ ansible_env['HOME'] }}/development"
-    state: directory
-
-# Atom config
 - block:
-    - name: Install atom packages
-      shell: /Applications/Atom.app/Contents/Resources/app/apm/bin/apm install sync-settings@5.0.1
+    - name: turn off time machine for new disks
+      osx_defaults:
+        domain: com.apple.TimeMachine
+        key: DoNotOfferNewDisksForBackup
+        type: bool
+        value: true
+        state: present
+      tags: 'timemachine'
+
   rescue:
-    - name: apm not availible
+    - name: com.apple.TimeMachine value not availible
       debug:
-        msg: "There was an error accessing apm"
+        msg: "there was an error accessing com.apple.Finder"
 
-- name: Create bash aliases
-  template:
-    src: bash_profile.j2
-    dest: "{{ ansible_env['HOME'] }}/.bash_profile"
-    owner: "{{ ansible_env['USER'] }}"
-    group: staff
-    mode: '0644'
-
-# Sublime config
-# - name: Generate Sublime user config
-#   template:
-#     src: sublime-settings.j2
-#     dest: "/Users/{{ ansible_env['USER'] }}/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings"
-#     owner: "{{ ansible_env['USER'] }}"
-#     group: staff
-#     mode: '0644'
-
-# iTerm config
-- name: Download iterm-colors
-  git:
-    repo: https://github.com/bahlo/iterm-colors.git
-    dest: "{{ ansible_env['HOME'] }}/development/iterm-colors"
-    version: master
-
-- name: Render iTerm preferences
-  template:
-    src: com.googlecode.iterm2.plist.j2
-    dest: "{{ ansible_env['HOME'] }}/Documents/com.googlecode.iterm2.plist"
-    owner: "{{ ansible_env['USER'] }}"
-    group: staff
-    mode: '0644'
-  tags: iterm
-
-- name: Set iTerm preferences directory
-  shell: defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "{{ ansible_env['HOME'] }}/Documents"
-  tags: iterm
-
-- name: Enable iTerm preferences loading
-  shell: defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
-  tags: iterm
-
-- name: Install complete-alias
-  get_url:
-    url: https://raw.githubusercontent.com/cykerway/complete-alias/master/complete_alias
-    dest: "{{ ansible_env['HOME'] }}/.bash_completion"
-
-- name: Add complete_aliases in bash_completion
-  blockinfile:
-    path: "{{ ansible_env['HOME'] }}/.bash_completion"
-    block: |
-      complete -F _complete_alias get
-      complete -F _complete_alias describe
-      complete -F _complete_alias apply
-      complete -F _complete_alias namespace
-      complete -F _complete_alias delete
-      complete -C '/usr/local/bin/aws_completer' aws
-
-## append /usr/local/bin/bash to /etc/shells
-## chsh to /usr/local/bin/bash after run to upgrade from bash 3.x to 5.x
-
-## brewed eksctl installs bash completion automatically now
-
-- name: Copy hyper config
-  copy:
-    src: .hyper.js
-    dest: "{{ ansible_env['HOME'] }}/.hyper.js"
-    mode: '0644'
-
-- name: Install python packages
+- name: install python packages
   pip:
-    name: ['boto3', 'netaddr']
+    name: ['boto3', 'netaddr', 'kubernetes-validate']
     state: present
