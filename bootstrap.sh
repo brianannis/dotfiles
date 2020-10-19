@@ -33,7 +33,7 @@ fi
 
 if ! [ -x /usr/local/bin/python ]; then
    echo -e "\033[0;33m Upgrading pip \033[0m"
-   pip3 install --upgrade pip
+   /usr/local/bin/pip3 install --upgrade pip
 else
   echo -e "\033[0;32m pip upgraded \033[0m"
 fi

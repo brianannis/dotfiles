@@ -14,7 +14,7 @@
     - name: scrolling value not availible
       debug:
         msg: "There was an error accessing com.apple.swipescrolldirection"
-        
+
 - block:
     - name: disable autocorrect
       osx_defaults:
@@ -152,8 +152,3 @@
     - name: com.apple.TimeMachine value not availible
       debug:
         msg: "there was an error accessing com.apple.Finder"
-
-- name: install python packages
-  pip:
-    name: ['boto3', 'netaddr', 'kubernetes-validate']
-    state: present
