@@ -26,21 +26,21 @@ fi
 
 if ! [ -x /usr/local/bin/python3 ]; then
    echo -e "\033[0;33m Installing homebrew python \033[0m"
-   brew install python
+   brew install python@3.8
 else
   echo -e "\033[0;32m python installed \033[0m"
 fi
 
 if ! [ -x /usr/local/bin/python ]; then
    echo -e "\033[0;33m Upgrading pip \033[0m"
-   pip3 install --upgrade pip
+   /usr/local/bin/pip3 install --upgrade pip
 else
   echo -e "\033[0;32m pip upgraded \033[0m"
 fi
 
 if ! [ -x /usr/local/bin/ansible ]; then
    echo -e "\033[0;33m Installing ansible \033[0m"
-   pip3 install ansible
+   pip3 install ansible==2.9.13
 else
   echo -e "\033[0;32m ansible installed \033[0m"
 fi

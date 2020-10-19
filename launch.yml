@@ -2,5 +2,8 @@
   connection: local
   gather_facts: yes
   roles:
+    - { role: apps, tags: 'apps'}
     - { role: provision, tags: 'provision'}
-    # - { role: zsh, tags: 'zsh'}
+    - { role: terminal, tags: 'terminal'}
+    - { role: atom, tags: 'atom'}
+    - { role: sublime, tags: 'sublime'}
