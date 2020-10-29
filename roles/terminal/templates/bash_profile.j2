@@ -20,6 +20,7 @@ alias ag='ansible-galaxy init'
 alias av='ansible-vault edit'
 
 ## cluster
+# alias cluster-panamax='enable-dev && kubectl config use-context arn:aws:eks:us-east-1:xxxxxxxxxxx:cluster/clustername'
 alias cluster-local='kubectl config use-context docker-for-desktop'
 
 ## kube
@@ -28,6 +29,9 @@ alias describe='kubectl describe'
 alias delete='kubectl delete'
 alias apply='kubectl apply'
 alias namespace='kubectl config set-context --current --namespace'
+
+## aws
+# alias enable-dev='export AWS_PROFILE='dev''
 
 ## mouse dpi
 alias work-dpi='defaults write -g com.apple.mouse.scaling .800'
@@ -39,7 +43,7 @@ alias home-dpi='defaults write -g com.apple.mouse.scaling .5'
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 iterm2_print_user_vars() {
-KUBECONTEXT=$(CTX=$(kubectl config current-context) 2> /dev/null;if [ $? -eq 0 ]; then echo $CTX;fi)
+KUBECONTEXT=$(CTX=$(kubectl config current-context | awk -F  ":" '/1/ {print $6}') 2> /dev/null;if [ $? -eq 0 ]; then echo $CTX;fi)
 KUBENAMESPACE=$(KNS=$(kubectl config view --minify --output 'jsonpath={..namespace}') 2> /dev/null;if [ $? -eq 0 ]; then echo $KNS;fi)
 iterm2_set_user_var kubeContext $KUBECONTEXT
 iterm2_set_user_var kubeNamespace $KUBENAMESPACE
