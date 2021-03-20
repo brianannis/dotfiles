@@ -17,27 +17,8 @@
 
 - name: install development applications
   homebrew_cask:
-    name: "{{ item }}"
+    name: ['google-chrome', 'github', 'dash', 'spotify', 'slack', 'vmware-fusion', 'docker', 'coconutbattery', 'hyper', 'macdown', 'postico', 'balenaetcher', 'ccmenu', 'insomnia', 'the-unarchiver', 'keybase', 'viscosity']
     state: present
-  with_items:
-   - google-chrome
-   - github
-   - dash
-   - spotify
-   - slack
-   - vmware-fusion
-   - docker
-   - coconutbattery
-   - hyper
-   - macdown
-   - postico
-   - balenaetcher
-   - ccmenu
-   - insomnia
-   - the-unarchiver
-   # - sensiblesidebuttons
-   - keybase
-   - viscosity
   ignore_errors: yes
 
 - name: install python packages
