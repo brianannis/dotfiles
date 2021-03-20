@@ -16,7 +16,7 @@
   when: lookup('env','GITHUB_REPOSITORY') == 'brianannis/dotfiles'
 
 - name: install development applications
-  homebrew_cask:
+  homebrew:
     name: "{{ item }}"
     state: present
   with_items:
