@@ -24,7 +24,7 @@
   git:
     repo: https://github.com/bahlo/iterm-colors.git
     dest: "{{ ansible_env['HOME'] }}/development/iterm-colors"
-    version: master
+    version: main
 
 - name: render iterm preferences
   template:
