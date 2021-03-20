@@ -17,7 +17,7 @@
 
 - name: install development applications
   homebrew_cask:
-    name: ['google-chrome', 'github', 'dash', 'spotify', 'slack', 'vmware-fusion', 'docker', 'coconutbattery', 'hyper', 'macdown', 'postico', 'balenaetcher', 'ccmenu', 'insomnia', 'the-unarchiver', '- sensiblesidebuttons', 'keybase', 'viscosity']
+    name: ['google-chrome', 'github', 'dash', 'spotify', 'slack', 'vmware-fusion', 'docker', 'coconutbattery', 'hyper', 'macdown', 'postico', 'balenaetcher', 'ccmenu', 'insomnia', 'the-unarchiver', 'keybase', 'viscosity']
     state: present
   ignore_errors: yes
 
