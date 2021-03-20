@@ -5,6 +5,11 @@
   homebrew_tap:
     name: weaveworks/tap
 
+- name: install iterm2
+  homebrew:
+    name: 'iterm2'
+    state: present
+
 - name: install common unix tools
   homebrew:
     name: ['awscli', 'htop-osx', 'wget', 'tree', 'cdrtools', 'kubernetes-cli', 'weaveworks/tap/eksctl', 'hey', 'stern', 'bash', 'bash-completion@2', 'ghz', 'cli53', 'telnet']
@@ -17,27 +22,8 @@
 
 - name: install development applications
   homebrew:
-    name: "{{ item }}"
+    name: ['google-chrome', 'github', 'dash', 'spotify', 'slack', 'vmware-fusion', 'docker', 'coconutbattery', 'hyper', 'macdown', 'postico', 'balenaetcher', 'ccmenu', 'insomnia', 'the-unarchiver', '- sensiblesidebuttons', 'keybase', 'viscosity']
     state: present
-  with_items:
-   - google-chrome
-   - github
-   - dash
-   - spotify
-   - slack
-   - vmware-fusion
-   - docker
-   - coconutbattery
-   - hyper
-   - macdown
-   - postico
-   - balenaetcher
-   - ccmenu
-   - insomnia
-   - the-unarchiver
-   # - sensiblesidebuttons
-   - keybase
-   - viscosity
   ignore_errors: yes
 
 - name: install python packages
