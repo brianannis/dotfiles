@@ -20,6 +20,9 @@ fi
 if ! [ -x /usr/local/bin/brew ]; then
    echo -e "\033[0;33m Installing brew \033[0m"
    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+   # 11.x defaults to zsh so need to source brew path
+   echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/test/.zprofile
+   eval "$(/opt/homebrew/bin/brew shellenv)"
 else
    echo -e "\033[0;32m brew installed \033[0m"
 fi
@@ -33,7 +36,7 @@ fi
 
 if ! [ -x /usr/local/bin/python ]; then
    echo -e "\033[0;33m Upgrading pip \033[0m"
-   /usr/local/bin/pip3 install --upgrade pip
+   /opt/homebrew/bin/pip3 install --upgrade pip
 else
   echo -e "\033[0;32m pip upgraded \033[0m"
 fi
