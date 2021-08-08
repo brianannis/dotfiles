@@ -23,7 +23,7 @@
     seconds: 30
 
 - name: close app
-  shell: pkill -x "Sublime Text"
+  shell: pkill -15  -f sublime_text
 
 - name: install package control
   get_url:
