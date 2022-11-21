@@ -5,13 +5,9 @@
   homebrew_tap:
     name: weaveworks/tap
 
-- name: install drivers tap
-  homebrew_tap:
-    name: homebrew/cask-drivers
-
 - name: install common unix tools
   homebrew:
-    name: ['awscli', 'htop-osx', 'wget', 'tree', 'cdrtools', 'kubernetes-cli', 'weaveworks/tap/eksctl', 'hey', 'stern', 'bash', 'bash-completion@2', 'ghz', 'cli53', 'telnet']
+    name: ['awscli', 'htop-osx', 'wget', 'tree', 'cdrtools', 'kubernetes-cli', 'weaveworks/tap/eksctl', 'hey', 'stern', 'bash', 'bash-completion@2', 'ghz', 'cli53', 'telnet', 'helm']
     state: present
 
 - name: update homebrew
@@ -23,7 +19,7 @@
 
 - name: install development applications
   homebrew_cask:
-    name: ['github', 'dash', 'spotify', 'vmware-fusion', 'docker', 'coconutbattery', 'hyper', 'macdown', 'postico', 'balenaetcher', 'ccmenu', 'insomnia', 'the-unarchiver', 'keybase', 'cask-drivers/logitech-g-hub' ]
+    name: ['github', 'dash', 'spotify', 'vmware-fusion', 'docker', 'coconutbattery', 'hyper', 'linearmouse', 'postico', 'balenaetcher', 'ccmenu', 'insomnia', 'the-unarchiver', 'visual-studio-code' ]
     state: present
   ignore_errors: yes
 
