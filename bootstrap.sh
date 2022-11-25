@@ -26,7 +26,7 @@ fi
 
 if ! [ -x /usr/local/bin/python3 ]; then
    echo -e "\033[0;33m Installing homebrew python \033[0m"
-   brew install python@3.10
+   brew install python@3.11
 else
   echo -e "\033[0;32m python installed \033[0m"
 fi
@@ -48,3 +48,4 @@ fi
 echo ""
 echo -e "Initialize playbook:\n"
 ansible-playbook launch.yml
+which ansible
