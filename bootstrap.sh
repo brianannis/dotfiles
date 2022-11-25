@@ -48,4 +48,3 @@ fi
 echo ""
 echo -e "Initialize playbook:\n"
 ansible-playbook launch.yml
-which ansible
