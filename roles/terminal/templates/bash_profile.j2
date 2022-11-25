@@ -4,7 +4,7 @@ export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 
 alias hs='history | grep'
 alias ll='ls -lart'
-alias econf='atom ~/.ssh/config'
+alias econf='code ~/.ssh/config'
 connect() {
 	EC2TARGET=$(aws ec2 describe-instances --instance-ids $1 --query "Reservations[*].Instances[*].PrivateIpAddress" --output text)
 	ssh $EC2TARGET
@@ -28,10 +28,17 @@ alias get='kubectl get'
 alias describe='kubectl describe'
 alias delete='kubectl delete'
 alias apply='kubectl apply'
+alias edit='kubectl edit'
 alias namespace='kubectl config set-context --current --namespace'
+alias gph='kubectl get pod -o=custom-columns=NAME:.metadata.name,STATUS:.status.phase,NODE:.spec.nodeName'
+alias gp='kubectl get pod'
+alias gn='kubectl get nodes -L eks.amazonaws.com/capacityType,topology.kubernetes.io/zone,node.kubernetes.io/instance-type'
+alias gd='kubectl get deployments'
+alias glog='stern --all-namespaces'
 
 ## aws
 # alias enable-dev='export AWS_PROFILE='dev''
+# alias sso='aws sso login'
 
 ## mouse dpi
 alias work-dpi='defaults write -g com.apple.mouse.scaling .800'
