@@ -9,9 +9,9 @@ jobs:
         uses: actions/checkout@master
 
       - name: setup ruby env
-        uses: actions/setup-ruby@v1
+        uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '2.7'
+          ruby-version: '3.0'
 
       - name: lint yaml set
         run: |
