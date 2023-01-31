@@ -40,7 +40,7 @@ fi
 
 if ! [ -x /usr/local/bin/ansible ]; then
    echo -e "\033[0;33m Installing ansible \033[0m"
-   pip3 install ansible==6.6.0
+   pip3 install ansible==7.1.0
 else
   echo -e "\033[0;32m ansible installed \033[0m"
 fi
