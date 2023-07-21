@@ -40,7 +40,7 @@ if ! [ -x /opt/homebrew/bin/python3 ] && [[ $(uname -m) == 'arm64' ]]; then
    /opt/homebrew/bin/pip3 install --upgrade pip
 elif ! [ -x /usr/local/bin/python3 ] && [[ $(uname -m) == 'x86_64' ]]; then
    echo -e "\033[0;33m Upgrading pip3 (x86_64) \033[0m"
-   /opt/homebrew/bin/pip3 install --upgrade pip
+   /usr/local/bin/pip3 install --upgrade pip
 else
   echo -e "\033[0;32m pip upgraded \033[0m"
 fi
