@@ -19,7 +19,7 @@ if ! [ -x /opt/homebrew/bin/brew ] && [[ $(uname -m) == 'arm64' ]]; then
 elif ! [ -x /usr/local/bin/brew ] && [[ $(uname -m) == 'x86_64' ]]; then
    echo -e "\033[0;33m Installing brew (x86_64) \033[0m"
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-   (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> $HOME/.zprofile
+   (echo; echo 'eval "$(/usr/local/bin/brew shellenv)"') >> $HOME/.zprofile
    eval "$(/opt/homebrew/bin/brew shellenv)"
 else
    echo -e "\033[0;32m brew installed \033[0m"
