@@ -11,8 +11,12 @@ echo "                                    ";
 echo "Preflight check:"
 echo ""
 
-if ! [ -x /opt/homebrew/bin/brew ]; then
-   echo -e "\033[0;33m Installing brew \033[0m"
+if ! [ -x /opt/homebrew/bin/brew ] && [[ $(uname -m) == 'arm64' ]]; then
+   echo -e "\033[0;33m Installing brew (arm64) \033[0m"
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> $HOME/.zprofile
+   eval "$(/opt/homebrew/bin/brew shellenv)"
+elif ! [ -x /usr/local/bin/brew ] && [[ $(uname -m) == 'x86_64' ]]; then
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
    (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> $HOME/.zprofile
    eval "$(/opt/homebrew/bin/brew shellenv)"
