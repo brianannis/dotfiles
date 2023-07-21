@@ -114,7 +114,7 @@
         domain: com.apple.Finder
         key: FXPreferredViewStyle
         type: string
-        value: clmv
+        value: Nlsv
         state: present
       tags: 'finder'
 
@@ -129,7 +129,7 @@
         domain: com.apple.Finder
         key: NewWindowTarget
         type: string
-        value: PfHm
+        value: PfLo
         state: present
       tags: 'finder'
 

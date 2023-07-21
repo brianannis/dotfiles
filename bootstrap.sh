@@ -10,37 +10,33 @@ echo "                                    ";
 
 echo "Preflight check:"
 echo ""
-if ! [ -x /usr/bin/git ]; then
-   echo -e "\033[0;33m Installing xcode tools \033[0m"
-   xcode-select --install
-else
-   echo -e "\033[0;32m xcode tools installed \033[0m"
-fi
 
-if ! [ -x /usr/local/bin/brew ]; then
+if ! [ -x /opt/homebrew/bin/brew ]; then
    echo -e "\033[0;33m Installing brew \033[0m"
-   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> $HOME/.zprofile
+   eval "$(/opt/homebrew/bin/brew shellenv)"
 else
    echo -e "\033[0;32m brew installed \033[0m"
 fi
 
-if ! [ -x /usr/local/bin/python3 ]; then
+if ! [ -x /opt/homebrew/bin/python3 ]; then
    echo -e "\033[0;33m Installing homebrew python \033[0m"
    brew install python@3.11
 else
   echo -e "\033[0;32m python installed \033[0m"
 fi
 
-if ! [ -x /usr/local/bin/python ]; then
+if ! [ -x /opt/homebrew/bin/python3 ]; then
    echo -e "\033[0;33m Upgrading pip \033[0m"
-   /usr/local/bin/pip3 install --upgrade pip
+   /opt/homebrew/bin/pip3 install --upgrade pip
 else
   echo -e "\033[0;32m pip upgraded \033[0m"
 fi
 
 if ! [ -x /usr/local/bin/ansible ]; then
    echo -e "\033[0;33m Installing ansible \033[0m"
-   pip3 install ansible==7.1.0
+   pip3 install ansible==8.2.0
 else
   echo -e "\033[0;32m ansible installed \033[0m"
 fi

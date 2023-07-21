@@ -7,7 +7,7 @@
 
 - name: install common unix tools
   homebrew:
-    name: ['awscli', 'htop-osx', 'wget', 'tree', 'cdrtools', 'kubernetes-cli', 'weaveworks/tap/eksctl', 'hey', 'stern', 'bash', 'bash-completion@2', 'ghz', 'cli53', 'telnet', 'helm']
+    name: ['awscli', 'htop-osx', 'wget', 'tree', 'cdrtools', 'kubernetes-cli', 'weaveworks/tap/eksctl', 'hey', 'stern', 'bash', 'bash-completion@2', 'ghz', 'cli53', 'telnet', 'helm', 'docker-credential-helper-ecr']
     state: present
 
 - name: update homebrew
@@ -19,7 +19,7 @@
 
 - name: install development applications
   homebrew_cask:
-    name: ['github', 'dash', 'spotify', 'vmware-fusion', 'docker', 'coconutbattery', 'hyper', 'linearmouse', 'postico', 'balenaetcher', 'ccmenu', 'insomnia', 'the-unarchiver', 'visual-studio-code' ]
+    name: ['github', 'dash', 'spotify', 'vmware-fusion', 'docker', 'coconutbattery', 'linearmouse', 'postico', 'balenaetcher', 'ccmenu', 'insomnia', 'the-unarchiver', 'visual-studio-code', 'discord', 'postman', 'android-file-transfer']
     state: present
   ignore_errors: yes
 
