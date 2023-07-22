@@ -22,19 +22,19 @@ jobs:
         uses: andymckay/cancel-action@0.3
         if: ${{ failure() }}
 
-  two:
-    name: run e2e bootstrap
-    runs-on: macos-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@master
+  # two:
+  #   name: run e2e bootstrap
+  #   runs-on: macos-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@master
 
-      - name: Run bootstrap
-        env:
-          ANSIBLE_FORCE_COLOR: True
-        run: |
-          chmod a+x bootstrap.zsh
-          ./bootstrap.zsh
+  #     - name: Run bootstrap
+  #       env:
+  #         ANSIBLE_FORCE_COLOR: True
+  #       run: |
+  #         chmod a+x bootstrap.zsh
+  #         ./bootstrap.zsh
 
   three:
     name: run backup & restore
@@ -45,7 +45,7 @@ jobs:
 
       - name: Run backup script
         run: |
-          mkdir $HOME/{.aws,.kube,.ssh,.docker}
+          mkdir -p $HOME/{.aws,.kube,.ssh,.docker}
           touch $HOME/{.docker/config.json,.vault}
           brew install ccmenu
           chmod a+x backup.zsh
