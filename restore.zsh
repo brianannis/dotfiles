@@ -7,7 +7,7 @@ printf '%s' $1 | hdiutil attach -stdinpass $HOME/transfer.dmg
 
 # copy dotfiles
 echo -e "copying files to $HOME"
-cp -r /Volumes/transfer/{.aws,.kube,.ssh,.docker/config.json,.vault*,.zprofile,.zshrc,Documents,Desktop,Downloads} $HOME/
+cp -r /Volumes/transfer/{.aws,.kube,.ssh,.docker,.vault*,.zprofile,.zshrc,Documents,Desktop,Downloads} $HOME/
 
 # write ccMenu config
 echo -e "writing ccMenu config"
