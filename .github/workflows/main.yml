@@ -50,7 +50,9 @@ jobs:
           brew install ccmenu
           chmod a+x backup.zsh
           ./backup.zsh any-password
+          echo -e "check volume contents"
           ls -lart /Volumes/transfer/
+          echo -e "detach volume"
           hdiutil detach /Volumes/transfer
 
       - name: Run restore script
@@ -58,6 +60,9 @@ jobs:
           rm -rf $HOME/{.aws,.kube,.ssh,.docker,.vault,.zprofile,.zshrc}
           chmod a+x restore.zsh
           ./restore.zsh any-password
+          echo -e "check CCMenu values"
+          defaults read net.sourceforge.cruisecontrol.CCMenu UseColorInMenuBar
+          echo -e "check home contents"
           ls -lart $HOME
 
   # three:
