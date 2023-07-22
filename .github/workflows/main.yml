@@ -51,6 +51,7 @@ jobs:
           chmod a+x backup.zsh
           ./backup.zsh any-password
           ls -lart /Volumes/transfer/
+          hdiutil detach /Volumes/transfer
 
       - name: Run restore script
         run: |
