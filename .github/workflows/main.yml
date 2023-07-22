@@ -55,8 +55,7 @@ jobs:
 
       - name: Run restore script
         run: |
-          rm -rf $HOME/{.aws,.kube,.ssh,.docker}
-          brew install ccmenu
+          rm -rf $HOME/{.aws,.kube,.ssh,.docker,.vault,.zprofile,.zshrc}
           chmod a+x restore.zsh
           ./restore.zsh any-password
           ls -lart $HOME
