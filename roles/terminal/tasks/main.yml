@@ -8,8 +8,8 @@
 
 - name: create bash aliases
   template:
-    src: bash_profile.j2
-    dest: "{{ ansible_env['HOME'] }}/.bash_profile"
+    src: zprofile.j2
+    dest: "{{ ansible_env['HOME'] }}/.zprofile"
     owner: "{{ ansible_env['USER'] }}"
     group: staff
     mode: '0644'
