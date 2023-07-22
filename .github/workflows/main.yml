@@ -46,14 +46,15 @@ jobs:
       - name: Run backup script
         run: |
           mkdir -p $HOME/{.aws,.kube,.ssh,.docker}
-          touch $HOME/{.docker/config.json,.vault,.zprofile,.zshrc}
+          touch $HOME/.docker/config.json
+          touch $HOME/{.vault,.zprofile,.zshrc}
           brew install ccmenu
           defaults write net.sourceforge.cruisecontrol.CCMenu UseColorInMenuBar 0
           chmod a+x backup.zsh
           ./backup.zsh any-password
-          echo -e "check volume contents"
+          echo -e "--- check volume contents"
           ls -lart /Volumes/transfer/
-          echo -e "detach volume"
+          echo -e "--- detach volume"
           hdiutil detach /Volumes/transfer
 
       - name: Run restore script
@@ -61,9 +62,9 @@ jobs:
           rm -rf $HOME/{.aws,.kube,.ssh,.docker,.vault,.zprofile,.zshrc}
           chmod a+x restore.zsh
           ./restore.zsh any-password
-          echo -e "check CCMenu values"
+          echo -e "--- check CCMenu values"
           defaults read net.sourceforge.cruisecontrol.CCMenu UseColorInMenuBar
-          echo -e "check home contents"
+          echo -e "--- check home contents"
           ls -lart $HOME
 
   # three:
