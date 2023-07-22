@@ -48,7 +48,7 @@ fi
 if ! [ -x /opt/homebrew/bin/ansible ] && [[ $(uname -m) == 'arm64' ]]; then
    echo -e "\033[0;33m Installing ansible (arm64) \033[0m"
    pip3 install ansible==8.2.0
-elif ! [ -x /usr/local/bin/ansible] && [[ $(uname -m) == 'x86_64' ]]; then
+elif ! [ -x /usr/local/bin/ansible ] && [[ $(uname -m) == 'x86_64' ]]; then
    echo -e "\033[0;33m Installing ansible (x86_64) \033[0m"
    pip3 install ansible==8.2.0
 else
