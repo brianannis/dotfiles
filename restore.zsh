@@ -11,4 +11,4 @@ cp -r /Volumes/transfer/{.aws,.kube,.ssh,.docker/config.json,.vault*,.zprofile,.
 defaults import net.sourceforge.cruisecontrol.CCMenu ccmenu.plist
 
 # unmount
-# hdiutil unmount /dev/disk5s1 
+hdiutil detach /Volumes/transfer

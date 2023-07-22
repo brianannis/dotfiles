@@ -14,4 +14,4 @@ cp -r $HOME/{.aws,.kube,.ssh,.docker/config.json,.vault*,.zprofile,.zshrc,Docume
 defaults export -app CCMenu /Volumes/transfer/ccmenu.plist
 
 # unmount
-# hdiutil unmount /dev/disk5s1 
+hdiutil detach /Volumes/transfer

@@ -52,6 +52,14 @@ jobs:
           ./backup.zsh any-password
           ls -lart /Volumes/transfer/
 
+      - name: Run restore script
+        run: |
+          rm -rf $HOME/{.aws,.kube,.ssh,.docker}
+          brew install ccmenu
+          chmod a+x restore.zsh
+          ./restore.zsh any-password
+          ls -lart $HOME
+
   # three:
   #   name: run non-app roles
   #   runs-on: macos-latest
