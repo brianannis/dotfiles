@@ -46,6 +46,7 @@ jobs:
       - name: Run backup script
         run: |
           mkdir -p $HOME/{.aws,.kube,.ssh,.docker}
+          ls -lart $HOME/.docker
           touch $HOME/.docker/config.json
           touch $HOME/{.vault,.zprofile,.zshrc}
           brew install ccmenu
