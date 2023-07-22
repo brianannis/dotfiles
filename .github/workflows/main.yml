@@ -46,10 +46,11 @@ jobs:
       - name: Run backup script
         run: |
           mkdir -p $HOME/{.aws,.kube,.ssh,.docker}
-          touch $HOME/{.docker/config.json,.vault}
+          touch $HOME/{.docker/config.json,.vault,.zprofile,.zshrc}
           brew install ccmenu
           chmod a+x backup.zsh
-          ./backup.zsh
+          ./backup.zsh any-password
+          ls -lart /Volumes/transfer/
 
   # three:
   #   name: run non-app roles
