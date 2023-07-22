@@ -48,6 +48,7 @@ jobs:
           mkdir -p $HOME/{.aws,.kube,.ssh,.docker}
           touch $HOME/{.docker/config.json,.vault,.zprofile,.zshrc}
           brew install ccmenu
+          defaults write net.sourceforge.cruisecontrol.CCMenu UseColorInMenuBar 0
           chmod a+x backup.zsh
           ./backup.zsh any-password
           echo -e "check volume contents"
