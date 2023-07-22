@@ -1,0 +1,11 @@
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
+
+if type brew &>/dev/null
+then
+FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+autoload -Uz compinit
+compinit
+fi
+
+export PROMPT="▶:%B%F{blue}%1~%f%b "

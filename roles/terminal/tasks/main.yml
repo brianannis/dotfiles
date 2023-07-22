@@ -6,13 +6,16 @@
     name: 'iterm2'
     state: present
 
-- name: create bash aliases
+- name: create zsh config
   template:
-    src: zprofile.j2
-    dest: "{{ ansible_env['HOME'] }}/.zprofile"
+    src: "{{ item.src }}"
+    dest:  "{{ item.dest }}"
     owner: "{{ ansible_env['USER'] }}"
     group: staff
     mode: '0644'
+  loop:
+    - { src: zprofile.j2, dest: "{{ ansible_env['HOME'] }}/.zprofile" }
+    - { src: zshrc.j2, dest: "{{ ansible_env['HOME'] }}/.zshrc" }
 
 # VCS config
 - name: create source folder
