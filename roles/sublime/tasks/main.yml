@@ -2,13 +2,13 @@
 # tasks file for sublime
 
 - name: install sublime-text application
-  homebrew_cask:
+  community.general.homebrew_cask:
     name: 'sublime-text'
     state: present
 
 - block:
     - name: remove from quarantine
-      shell: xattr -d com.apple.quarantine /Applications/Sublime\ Text.app
+      ansible.builtin.shell: xattr -d com.apple.quarantine /Applications/Sublime\ Text.app
 
   rescue:
     - name: xattr value not availible
@@ -16,22 +16,22 @@
         msg: "There was an error accessing xattr"
 
 - name: open app
-  shell: open /Applications/Sublime\ Text.app
+  ansible.builtin.shell: open /Applications/Sublime\ Text.app
 
 - name: Pause for 30 seconds
   pause:
     seconds: 30
 
 - name: close app
-  shell: pkill -15  -f sublime_text
+  ansible.builtin.shell: pkill -15  -f sublime_text
 
 - name: install package control
-  get_url:
+  ansible.builtin.get_url:
     url: https://packagecontrol.io/Package%20Control.sublime-package
     dest: "{{ ansible_env['HOME'] }}/Library/Application Support/Sublime Text/Installed Packages/Package Control.sublime-package"
 
 - name: generate sublime package control config
-  template:
+  ansible.builtin.template:
     src: packagecontrol-settings.j2
     dest: "/Users/{{ ansible_env['USER'] }}/Library/Application Support/Sublime Text/Packages/User/Package Control.sublime-settings"
     owner: "{{ ansible_env['USER'] }}"
@@ -39,7 +39,7 @@
     mode: '0644'
 
 - name: generate sublime user config
-  template:
+  ansible.builtin.template:
     src: sublime-settings.j2
     dest: "/Users/{{ ansible_env['USER'] }}/Library/Application Support/Sublime Text/Packages/User/Preferences.sublime-settings"
     owner: "{{ ansible_env['USER'] }}"

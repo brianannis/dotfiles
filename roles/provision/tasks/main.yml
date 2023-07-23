@@ -2,7 +2,7 @@
 # OS X config
 - block:
     - name: disable natural scrolling
-      osx_defaults:
+      community.general.osx_defaults:
         domain: NSGlobalDomain
         key: com.apple.swipescrolldirection
         type: bool
@@ -17,7 +17,7 @@
 
 - block:
     - name: disable autocorrect
-      osx_defaults:
+      community.general.osx_defaults:
         domain: NSGlobalDomain
         key: NSAutomaticSpellingCorrectionEnabled
         type: bool
@@ -32,7 +32,7 @@
 
 - block:
     - name: set dock size
-      osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.dock
         key: tilesize
         type: float
@@ -47,7 +47,7 @@
 
 - block:
     - name: Set dock recent
-      osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.dock
         key: show-recents
         type: bool
@@ -62,7 +62,7 @@
 
 - block:
     - name: disable locale in com.apple.TextInputMenu
-      osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.TextInputMenu
         key: visible
         type: int
@@ -71,7 +71,7 @@
       tags: 'menu'
 
     - name: disable airplay in com.apple.airplay
-      osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.airplay
         key: showInMenuBarIfPresent
         type: bool
@@ -80,7 +80,7 @@
       tags: 'menu'
 
     - name: enable battery percentage in com.apple.menuextra.battery
-      osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.menuextra.battery
         key: ShowPercent
         type: string
@@ -89,7 +89,7 @@
       tags: 'menu'
 
     - name: set com.apple.systemuiserver
-      osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.systemuiserver
         key: menuExtras
         type: array
@@ -110,7 +110,7 @@
 
 - block:
     - name: set column view in finder
-      osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.Finder
         key: FXPreferredViewStyle
         type: string
@@ -125,7 +125,7 @@
 
 - block:
     - name: set NewWindowTarget in finder
-      osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.Finder
         key: NewWindowTarget
         type: string
@@ -140,7 +140,7 @@
 
 - block:
     - name: turn off time machine for new disks
-      osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.TimeMachine
         key: DoNotOfferNewDisksForBackup
         type: bool
