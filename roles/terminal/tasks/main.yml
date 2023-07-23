@@ -2,12 +2,12 @@
 # tasks file for terminal
 
 - name: install iterm2
-  homebrew_cask:
+  community.general.homebrew_cask:
     name: 'iterm2'
     state: present
 
 - name: create zsh config
-  template:
+  ansible.builtin.template:
     src: "{{ item.src }}"
     dest:  "{{ item.dest }}"
     owner: "{{ ansible_env['USER'] }}"
@@ -19,18 +19,18 @@
 
 # VCS config
 - name: create source folder
-  file:
+  ansible.builtin.file:
     path: "{{ ansible_env['HOME'] }}/development"
     state: directory
 
 - name: download iterm-colors
-  git:
+  ansible.builtin.git:
     repo: https://github.com/bahlo/iterm-colors.git
     dest: "{{ ansible_env['HOME'] }}/development/iterm-colors"
     version: main
 
 - name: render iterm preferences
-  template:
+  ansible.builtin.template:
     src: com.googlecode.iterm2.plist.j2
     dest: "{{ ansible_env['HOME'] }}/Documents/com.googlecode.iterm2.plist"
     owner: "{{ ansible_env['USER'] }}"
@@ -39,15 +39,15 @@
   tags: iterm
 
 - name: set iterm preferences directory
-  shell: defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "{{ ansible_env['HOME'] }}/Documents"
+  ansible.builtin.shell: defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "{{ ansible_env['HOME'] }}/Documents"
   tags: iterm
 
 - name: enable iterm preferences loading
-  shell: defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+  ansible.builtin.shell: defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
   tags: iterm
 
 - name: install shell integration
-  get_url:
+  ansible.builtin.get_url:
     url: https://raw.githubusercontent.com/gnachman/iTerm2/master/Resources/shell_integration/iterm2_shell_integration.zsh
     dest: "{{ ansible_env['HOME'] }}/.iterm2_shell_integration.zsh"
     mode: '0755'
