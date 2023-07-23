@@ -17,8 +17,8 @@ Bootstrap a macOS workstation
 ### From git ###
 ```
 git clone git@github.com:brianannis/dotfiles.git
-chmod a+x bootstrap.sh
-./bootstrap.sh
+chmod a+x bootstrap.zsh
+./bootstrap.zsh
 ```
 
 ### From zip ###
@@ -26,6 +26,6 @@ chmod a+x bootstrap.sh
 curl https://github.com/brianannis/dotfiles/archive/master.zip -L -o ~/Downloads/master.zip
 unzip ~/Downloads/master.zip -d ~/Downloads/dotfiles-master
 cd ~/Downloads/dotfiles-master
-chmod a+x bootstrap.sh
-./bootstrap.sh
+chmod a+x bootstrap.zsh
+./bootstrap.zsh
 ```

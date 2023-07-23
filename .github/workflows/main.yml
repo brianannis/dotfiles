@@ -6,12 +6,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v3
 
       - name: setup ruby env
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.0'
+          ruby-version: '3.2'
 
       - name: lint yaml set
         run: |
@@ -19,7 +19,7 @@ jobs:
           yaml-lint -i $GITHUB_WORKSPACE
 
       - name: cancel job
-        uses: andymckay/cancel-action@0.2
+        uses: andymckay/cancel-action@0.3
         if: ${{ failure() }}
 
   two:
@@ -27,21 +27,65 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v3
 
       - name: Run bootstrap
         env:
           ANSIBLE_FORCE_COLOR: True
+        shell: zsh {0}
         run: |
-          chmod a+x bootstrap.sh
-          ./bootstrap.sh
+          chmod a+x bootstrap.zsh
+          ./bootstrap.zsh
+
+      - name: cancel job
+        uses: andymckay/cancel-action@0.3
+        if: ${{ failure() }}
+
+  three:
+    name: run backup & restore
+    runs-on: macos-latest
+    env:
+      VOLSIZE: '1g'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Run backup script
+        shell: zsh {0}
+        run: |
+          mkdir -p $HOME/{.aws,.kube,.ssh,.docker}
+          touch $HOME/{.docker/config.json,.vault,.zprofile,.zshrc}
+          brew install ccmenu tree
+          defaults write net.sourceforge.cruisecontrol.CCMenu UseColorInMenuBar 0
+          chmod a+x backup.zsh
+          ./backup.zsh any-password
+          echo -e "--- check volume contents"
+          tree -a -L 2 /Volumes/transfer
+          echo -e "--- detach volume"
+          hdiutil detach /Volumes/transfer
+          
+
+      - name: Run restore script
+        shell: zsh {0}
+        run: |
+          rm -rf $HOME/{.aws,.kube,.ssh,.docker,.vault,.zprofile,.zshrc}
+          chmod a+x restore.zsh
+          ./restore.zsh any-password
+          echo -e "--- check CCMenu values"
+          defaults read net.sourceforge.cruisecontrol.CCMenu UseColorInMenuBar
+          echo -e "--- check home contents"
+          ls -lart $HOME
+
+      - name: cancel job
+        uses: andymckay/cancel-action@0.3
+        if: ${{ failure() }}
 
   # three:
   #   name: run non-app roles
   #   runs-on: macos-latest
   #   steps:
   #     - name: Checkout
-  #       uses: actions/checkout@master
+  #       uses: actions/checkout@v3
   #
   #     - name: Run bootstrap
   #       env:

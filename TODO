@@ -1,5 +1,3 @@
-Add better handling of Ansible dependency (user may not be using homebrewed python)
 Investigate apple screen saver settings:
  - defaults write com.apple.screensaver askForPassword -int 1
  - defaults write com.apple.screensaver askForPasswordDelay -int 0
-

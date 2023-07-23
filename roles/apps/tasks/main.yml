@@ -1,29 +1,27 @@
 ---
 # tasks file for apps
 
-- name: install weaveworks tap
-  homebrew_tap:
-    name: weaveworks/tap
+- name: install taps
+  community.general.homebrew_tap:
+    name: weaveworks/tap,aws/tap
 
 - name: install common unix tools
-  homebrew:
-    name: ['awscli', 'htop-osx', 'wget', 'tree', 'cdrtools', 'kubernetes-cli', 'weaveworks/tap/eksctl', 'hey', 'stern', 'bash', 'bash-completion@2', 'ghz', 'cli53', 'telnet', 'helm']
+  community.general.homebrew:
+    name: ['awscli', 'htop-osx', 'wget', 'tree', 'cdrtools', 'kubernetes-cli', 'weaveworks/tap/eksctl', 'hey', 'stern', 'bash', 'bash-completion@2', 'ghz', 'cli53', 'telnet', 'helm', 'docker-credential-helper-ecr', 'aws/tap/eks-node-viewer']
     state: present
 
 - name: update homebrew
-  homebrew:
-    update_homebrew: yes
+  community.general.homebrew:
+    update_homebrew: true
   when: lookup('env','GITHUB_REPOSITORY') == 'brianannis/dotfiles'
 
-## rm chome / slack
-
 - name: install development applications
-  homebrew_cask:
-    name: ['github', 'dash', 'spotify', 'vmware-fusion', 'docker', 'coconutbattery', 'hyper', 'linearmouse', 'postico', 'balenaetcher', 'ccmenu', 'insomnia', 'the-unarchiver', 'visual-studio-code' ]
+  community.general.homebrew_cask:
+    name: ['github', 'dash', 'spotify', 'vmware-fusion', 'docker', 'coconutbattery', 'linearmouse', 'postico', 'balenaetcher', 'ccmenu', 'insomnia', 'the-unarchiver', 'visual-studio-code', 'discord', 'postman', 'android-file-transfer']
     state: present
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: install python packages
-  pip:
+  ansible.builtin.pip:
     name: ['boto3', 'netaddr', 'kubernetes-validate']
     state: present
