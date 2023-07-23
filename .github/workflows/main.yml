@@ -49,12 +49,12 @@ jobs:
         run: |
           mkdir -p $HOME/{.aws,.kube,.ssh,.docker}
           touch $HOME/{.docker/config.json,.vault,.zprofile,.zshrc}
-          brew install ccmenu
+          brew install ccmenu tree
           defaults write net.sourceforge.cruisecontrol.CCMenu UseColorInMenuBar 0
           chmod a+x backup.zsh
           ./backup.zsh any-password
           echo -e "--- check volume contents"
-          ls -lart /Volumes/transfer/.docker
+          tree /Volumes/transfer/.docker
           echo -e "--- detach volume"
           hdiutil detach /Volumes/transfer
 
