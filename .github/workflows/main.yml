@@ -54,7 +54,7 @@ jobs:
           chmod a+x backup.zsh
           ./backup.zsh any-password
           echo -e "--- check volume contents"
-          tree /Volumes/transfer/.docker
+          tree /Volumes/transfer
           echo -e "--- detach volume"
           hdiutil detach /Volumes/transfer
 
