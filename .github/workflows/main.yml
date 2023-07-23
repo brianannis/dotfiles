@@ -46,10 +46,8 @@ jobs:
       - name: Run backup script
         run: |
           mkdir -p $HOME/{.aws,.kube,.ssh,.docker}
+          touch $HOME/{.docker/config.json,.vault,.zprofile,.zshrc}
           ls -lart $HOME/.docker
-          touch $HOME/.docker/config.json
-          ls -lart $HOME/.docker
-          touch $HOME/{.vault,.zprofile,.zshrc}
           brew install ccmenu
           defaults write net.sourceforge.cruisecontrol.CCMenu UseColorInMenuBar 0
           chmod a+x backup.zsh
