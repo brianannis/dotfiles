@@ -52,7 +52,7 @@ jobs:
           chmod a+x backup.zsh
           ./backup.zsh any-password
           echo -e "--- check volume contents"
-          ls -lart /Volumes/transfer/
+          ls -lart /Volumes/transfer/.docker
           echo -e "--- detach volume"
           hdiutil detach /Volumes/transfer
 
