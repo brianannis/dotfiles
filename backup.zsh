@@ -1,9 +1,11 @@
 #!/bin/zsh
 # ./backup.zsh any-password
 
+${VOLSIZE:='10g'}
+
 # create encrypted store
 echo -e "--- creating encrypted volume"
-printf '%s' $1 | hdiutil create -encryption AES-128 -stdinpass -size 10g -fs APFS -volname transfer $HOME/transfer.dmg
+printf '%s' $1 | hdiutil create -encryption AES-128 -stdinpass -size $VOLSIZE -fs APFS -volname transfer $HOME/transfer.dmg
 
 # mount disk
 echo -e "--- mounting encrypted volume"

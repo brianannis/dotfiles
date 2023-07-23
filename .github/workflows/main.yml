@@ -39,6 +39,8 @@ jobs:
   three:
     name: run backup & restore
     runs-on: macos-latest
+    env:
+      VOLSIZE: '1g'
     steps:
       - name: Checkout
         uses: actions/checkout@master
