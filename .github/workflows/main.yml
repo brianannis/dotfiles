@@ -47,7 +47,6 @@ jobs:
         run: |
           mkdir -p $HOME/{.aws,.kube,.ssh,.docker}
           touch $HOME/{.docker/config.json,.vault,.zprofile,.zshrc}
-          ls -lart $HOME/.docker
           brew install ccmenu
           defaults write net.sourceforge.cruisecontrol.CCMenu UseColorInMenuBar 0
           chmod a+x backup.zsh

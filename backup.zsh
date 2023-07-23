@@ -11,7 +11,8 @@ printf '%s' $1 | hdiutil attach -stdinpass $HOME/transfer.dmg -quiet
 
 # copy dotfiles
 echo -e "--- copying files to encrypted volume"
-cp -r $HOME/{.aws,.kube,.ssh,.docker/config.json,.vault*,.zprofile,.zshrc,Documents,Desktop,Downloads} /Volumes/transfer
+cp -r $HOME/{.aws,.kube,.ssh,.vault*,.zprofile,.zshrc,Documents,Desktop,Downloads} /Volumes/transfer
+cp -r $HOME/.docker/config.json /Volumes/transfer/.docker/config.json
 
 # copy ccMenu config
 echo -e "--- copy ccMenu config"
