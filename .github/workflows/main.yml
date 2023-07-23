@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v3
 
       - name: setup ruby env
         uses: ruby/setup-ruby@v1
@@ -27,7 +27,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v3
 
       - name: Run bootstrap
         env:
@@ -36,6 +36,10 @@ jobs:
           chmod a+x bootstrap.zsh
           ./bootstrap.zsh
 
+      - name: cancel job
+        uses: andymckay/cancel-action@0.3
+        if: ${{ failure() }}
+
   three:
     name: run backup & restore
     runs-on: macos-latest
@@ -43,7 +47,7 @@ jobs:
       VOLSIZE: '1g'
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v3
 
       - name: Run backup script
         run: |
@@ -68,12 +72,16 @@ jobs:
           echo -e "--- check home contents"
           ls -lart $HOME
 
+      - name: cancel job
+        uses: andymckay/cancel-action@0.3
+        if: ${{ failure() }}
+
   # three:
   #   name: run non-app roles
   #   runs-on: macos-latest
   #   steps:
   #     - name: Checkout
-  #       uses: actions/checkout@master
+  #       uses: actions/checkout@v3
   #
   #     - name: Run bootstrap
   #       env:
