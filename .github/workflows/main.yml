@@ -53,7 +53,7 @@ jobs:
       - name: Run backup script
         shell: zsh {0}
         run: |
-          mkdir -p $HOME/{.aws,.kube,.ssh,.docker}
+          mkdir -p $HOME/{.aws,.kube,.ssh,.docker,development}
           touch $HOME/{.docker/config.json,.vault,.zprofile,.zshrc}
           brew install ccmenu tree
           defaults write net.sourceforge.cruisecontrol.CCMenu UseColorInMenuBar 0
