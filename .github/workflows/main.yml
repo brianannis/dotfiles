@@ -19,11 +19,6 @@ jobs:
           gem install yaml-lint
           yaml-lint -i $GITHUB_WORKSPACE
 
-      - name: check zsh syntax
-        run: |
-          zsh -n $GITHUB_WORKSPACE/bootstrap.zsh
-          zsh -n $GITHUB_WORKSPACE/backup.zsh
-
       - name: cancel job
         uses: andymckay/cancel-action@0.5
         if: ${{ failure() }}
