@@ -62,7 +62,7 @@ fi
 ANSIBLE_VERSION="12.0.0"  # Latest stable version
 if ! pipx list | grep -q "ansible"; then
     echo -e "\033[0;33m Installing Ansible ${ANSIBLE_VERSION} with pipx... \033[0m"
-    pipx install ansible==$ANSIBLE_VERSION
+    pipx install --include-deps ansible==$ANSIBLE_VERSION
     pipx inject --include-apps ansible kubernetes-validate markdown ansible-lint
     pipx inject ansible docker kubernetes boto3 netaddr
 
