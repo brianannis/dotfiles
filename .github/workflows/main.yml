@@ -19,8 +19,8 @@ jobs:
           yaml-lint -i $GITHUB_WORKSPACE
 
     concurrency:
-      group: ${{ github.ref }}
-      cancel-in-progress: true
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
   two:
     name: run e2e bootstrap
@@ -38,8 +38,8 @@ jobs:
           ./bootstrap.zsh
 
     concurrency:
-      group: ${{ github.ref }}
-      cancel-in-progress: true
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
   three:
     name: run backup & restore
@@ -77,8 +77,8 @@ jobs:
           ls -lart $HOME
 
     concurrency:
-      group: ${{ github.ref }}
-      cancel-in-progress: true
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
   # three:
   #   name: run non-app roles
