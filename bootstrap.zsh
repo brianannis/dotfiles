@@ -77,7 +77,7 @@ echo -e "Initialize playbook:\n"
 if ! command -v ansible-playbook &> /dev/null; then
     echo -e "\033[0;31m Error: ansible-playbook not found in PATH \033[0m"
     echo "You may need to restart your shell or run: source ~/.zprofile"
-    source ~/.zprofile
+    echo $PATH
 fi
 
 ansible-playbook launch.yml
