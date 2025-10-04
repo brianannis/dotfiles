@@ -18,9 +18,9 @@ jobs:
           gem install yaml-lint
           yaml-lint -i $GITHUB_WORKSPACE
 
-      - name: cancel job
-        uses: andymckay/cancel-action@0.5
-        if: ${{ failure() }}
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
   two:
     name: run e2e bootstrap
@@ -37,9 +37,9 @@ jobs:
           chmod a+x bootstrap.zsh
           ./bootstrap.zsh
 
-      - name: cancel job
-        uses: andymckay/cancel-action@0.5
-        if: ${{ failure() }}
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
   three:
     name: run backup & restore
@@ -76,9 +76,9 @@ jobs:
           echo -e "--- check home contents"
           ls -lart $HOME
 
-      - name: cancel job
-        uses: andymckay/cancel-action@0.5
-        if: ${{ failure() }}
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
   # three:
   #   name: run non-app roles
