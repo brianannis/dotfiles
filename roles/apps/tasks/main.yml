@@ -1,27 +1,57 @@
 ---
 # tasks file for apps
 
-- name: install taps
+- name: Install taps
   community.general.homebrew_tap:
     name: weaveworks/tap,aws/tap
 
-- name: install common unix tools
+- name: Install common unix tools
   community.general.homebrew:
-    name: ['awscli', 'htop-osx', 'wget', 'tree', 'cdrtools', 'kubernetes-cli', 'weaveworks/tap/eksctl', 'hey', 'stern', 'bash', 'bash-completion@2', 'ghz', 'cli53', 'telnet', 'helm', 'docker-credential-helper-ecr', 'aws/tap/eks-node-viewer']
+    name:
+      - aws/tap/eks-node-viewer
+      - awscli
+      - cdrtools
+      - cli53
+      - docker-credential-helper-ecr
+      - dive
+      - ghz
+      - grpcurl
+      - helm
+      - hey
+      - htop
+      - kubernetes-cli
+      - redis
+      - stern
+      - telnet
+      - tree
+      - uv
+      - weaveworks/tap/eksctl
+      - wget
     state: present
 
-- name: update homebrew
+- name: Update homebrew
   community.general.homebrew:
     update_homebrew: true
   when: lookup('env','GITHUB_REPOSITORY') == 'brianannis/dotfiles'
 
-- name: install development applications
+- name: Install development applications
   community.general.homebrew_cask:
-    name: ['github', 'dash', 'spotify', 'vmware-fusion', 'docker', 'coconutbattery', 'linearmouse', 'postico', 'balenaetcher', 'ccmenu', 'insomnia', 'the-unarchiver', 'visual-studio-code', 'discord', 'postman', 'android-file-transfer']
+    name:
+      - android-file-transfer
+      - balenaetcher
+      - ccmenu
+      - coconutbattery
+      - dash
+      - discord
+      - docker-desktop
+      - github
+      - insomnia
+      - linearmouse
+      - multipass
+      - postico
+      - postman
+      - spotify
+      - the-unarchiver
+      - visual-studio-code
     state: present
   ignore_errors: true
-
-- name: install python packages
-  ansible.builtin.pip:
-    name: ['boto3', 'netaddr', 'kubernetes-validate']
-    state: present
