@@ -64,7 +64,7 @@ if ! pipx list | grep -q "ansible"; then
     echo -e "\033[0;33m Installing Ansible ${ANSIBLE_VERSION} with pipx... \033[0m"
     pipx install ansible==$ANSIBLE_VERSION
     pipx inject --include-apps ansible kubernetes-validate markdown ansible-lint
-    pipx inject ansible docker kubernetes boto3 netaddr'
+    pipx inject ansible docker kubernetes boto3 netaddr
 
 else
     echo -e "\033[0;32m Ansible installed \033[0m"
