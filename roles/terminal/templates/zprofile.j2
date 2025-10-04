@@ -1,8 +1,11 @@
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 export ITERM2_SQUELCH_MARK=0
 
 alias hs='history | grep'
 alias ll='ls -lart'
 alias econf='code ~/.ssh/config'
+
 connect() {
 	EC2TARGET=$(aws ec2 describe-instances --instance-ids $1 --query "Reservations[*].Instances[*].PrivateIpAddress" --output text)
 	ssh $EC2TARGET
