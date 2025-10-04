@@ -8,24 +8,25 @@
 - name: Install common unix tools
   community.general.homebrew:
     name:
-      - awscli
-      - htop
-      - wget
-      - tree
-      - cdrtools
-      - kubernetes-cli
-      - weaveworks/tap/eksctl
-      - grpcurl
-      - hey
-      - stern
-      - ghz
-      - cli53
-      - telnet
-      - helm
-      - docker-credential-helper-ecr
       - aws/tap/eks-node-viewer
+      - awscli
+      - cdrtools
+      - cli53
+      - docker-credential-helper-ecr
       - dive
+      - ghz
+      - grpcurl
+      - helm
+      - hey
+      - htop
+      - kubernetes-cli
       - redis
+      - stern
+      - telnet
+      - tree
+      - uv
+      - weaveworks/tap/eksctl
+      - wget
     state: present
 
 - name: Update homebrew
@@ -36,20 +37,21 @@
 - name: Install development applications
   community.general.homebrew_cask:
     name:
-      - github
-      - dash
-      - spotify
-      - docker-desktop
-      - coconutbattery
-      - linearmouse
-      - postico
+      - android-file-transfer
       - balenaetcher
       - ccmenu
+      - coconutbattery
+      - dash
+      - discord
+      - docker-desktop
+      - github
       - insomnia
+      - linearmouse
+      - multipass
+      - postico
+      - postman
+      - spotify
       - the-unarchiver
       - visual-studio-code
-      - discord
-      - postman
-      - android-file-transfer
     state: present
   ignore_errors: true
