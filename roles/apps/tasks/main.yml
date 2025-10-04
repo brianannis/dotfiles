@@ -9,7 +9,7 @@
   community.general.homebrew:
     name:
       - awscli
-      - htop-osx
+      - htop
       - wget
       - tree
       - cdrtools
