@@ -2,7 +2,9 @@
 ![Platform](https://img.shields.io/badge/platform-macOS-lightgrey)
 
 # dotfiles
-Bootstrap a macOS workstation
+Bootstrap a macOS workstation.
+
+Supports Apple Silicon Macs running macOS 26 or newer (baseline macOS 26, expected to work on macOS 27).
 
 ## Features ##
 

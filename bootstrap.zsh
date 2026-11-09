@@ -11,12 +11,16 @@ echo "                                    ";
 echo "Preflight check:"
 echo ""
 
-# Detect Homebrew installation path based on architecture
-if [[ $(uname -m) == 'arm64' ]]; then
-    BREW_PREFIX="/opt/homebrew"
-else
-    BREW_PREFIX="/usr/local"
+# Apple Silicon on macOS 26 or newer only
+if [[ $(uname -m) != 'arm64' ]]; then
+    echo -e "\033[0;31m Error: Apple Silicon (arm64) is required \033[0m"
+    exit 1
 fi
+if (( $(sw_vers -productVersion | cut -d. -f1) < 26 )); then
+    echo -e "\033[0;31m Error: macOS 26 or newer is required \033[0m"
+    exit 1
+fi
+BREW_PREFIX="/opt/homebrew"
 
 # Check if Homebrew is installed
 if ! command -v brew &> /dev/null; then

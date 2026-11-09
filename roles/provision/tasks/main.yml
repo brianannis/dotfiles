@@ -11,9 +11,9 @@
       tags: 'osx'
 
   rescue:
-    - name: scrolling value not availible
+    - name: scrolling value not available
       debug:
-        msg: "There was an error accessing com.apple.swipescrolldirection"
+        msg: "There was an error accessing com.apple.swipescrolldirection on macOS {{ ansible_distribution_version }}"
 
 - block:
     - name: disable autocorrect
@@ -26,9 +26,9 @@
       tags: 'osx'
 
   rescue:
-    - name: autocorrect value not availible
+    - name: autocorrect value not available
       debug:
-        msg: "There was an error accessing NSAutomaticSpellingCorrectionEnabled"
+        msg: "There was an error accessing NSAutomaticSpellingCorrectionEnabled on macOS {{ ansible_distribution_version }}"
 
 - block:
     - name: set dock size
@@ -41,9 +41,9 @@
       tags: 'dock'
 
   rescue:
-    - name: Dock size value not availible
+    - name: Dock size value not available
       debug:
-        msg: "There was an error accessing com.apple.dock"
+        msg: "There was an error accessing com.apple.dock on macOS {{ ansible_distribution_version }}"
 
 - block:
     - name: Set dock recent
@@ -56,57 +56,45 @@
       tags: 'dock'
 
   rescue:
-    - name: dock recents value not availible
+    - name: dock recents value not available
       debug:
-        msg: "There was an error accessing com.apple.dock"
+        msg: "There was an error accessing com.apple.dock on macOS {{ ansible_distribution_version }}"
 
 - block:
-    - name: disable locale in com.apple.TextInputMenu
+    - name: show battery percentage in Control Center
       community.general.osx_defaults:
-        domain: com.apple.TextInputMenu
-        key: visible
-        type: int
-        value: "0"
-        state: present
-      tags: 'menu'
-
-    - name: disable airplay in com.apple.airplay
-      community.general.osx_defaults:
-        domain: com.apple.airplay
-        key: showInMenuBarIfPresent
+        domain: com.apple.controlcenter
+        host: currentHost
+        key: BatteryShowPercentage
         type: bool
-        value: false
+        value: true
         state: present
       tags: 'menu'
 
-    - name: enable battery percentage in com.apple.menuextra.battery
+    - name: show Bluetooth in menu bar
       community.general.osx_defaults:
-        domain: com.apple.menuextra.battery
-        key: ShowPercent
-        type: string
-        value: "YES"
+        domain: com.apple.controlcenter
+        host: currentHost
+        key: Bluetooth
+        type: int
+        value: 18
         state: present
       tags: 'menu'
 
-    - name: set com.apple.systemuiserver
+    - name: show Wi-Fi in menu bar
       community.general.osx_defaults:
-        domain: com.apple.systemuiserver
-        key: menuExtras
-        type: array
-        value:
-          - "/System/Library/CoreServices/Menu Extras/User.menu"
-          - "/System/Library/CoreServices/Menu Extras/Clock.menu"
-          - "/System/Library/CoreServices/Menu Extras/Battery.menu"
-          - "/System/Library/CoreServices/Menu Extras/AirPort.menu"
-          - "/System/Library/CoreServices/Menu Extras/VPN.menu"
-          - "/System/Library/CoreServices/Menu Extras/Bluetooth.menu"
+        domain: com.apple.controlcenter
+        host: currentHost
+        key: WiFi
+        type: int
+        value: 18
         state: present
       tags: 'menu'
 
   rescue:
-    - name: systemuiserver not availible
+    - name: Control Center settings not available
       debug:
-        msg: "There was an error accessing com.apple.systemuiserver"
+        msg: "Error setting com.apple.controlcenter on macOS {{ ansible_distribution_version }}"
 
 - block:
     - name: set column view in finder
@@ -119,9 +107,9 @@
       tags: 'finder'
 
   rescue:
-    - name: finder view value not availible
+    - name: finder view value not available
       debug:
-        msg: "There was an error accessing com.apple.Finder"
+        msg: "There was an error accessing com.apple.Finder on macOS {{ ansible_distribution_version }}"
 
 - block:
     - name: set NewWindowTarget in finder
@@ -134,9 +122,9 @@
       tags: 'finder'
 
   rescue:
-    - name: finder NewWindowTarget value not availible
+    - name: finder NewWindowTarget value not available
       debug:
-        msg: "There was an error accessing com.apple.Finder"
+        msg: "There was an error accessing com.apple.Finder on macOS {{ ansible_distribution_version }}"
 
 - block:
     - name: turn off time machine for new disks
@@ -149,6 +137,6 @@
       tags: 'timemachine'
 
   rescue:
-    - name: com.apple.TimeMachine value not availible
+    - name: com.apple.TimeMachine value not available
       debug:
-        msg: "there was an error accessing com.apple.Finder"
+        msg: "there was an error accessing com.apple.Finder on macOS {{ ansible_distribution_version }}"
