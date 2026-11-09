@@ -36,8 +36,8 @@ else
     echo -e "\033[0;32m Homebrew installed \033[0m"
 fi
 
-# Install Python 3.13 (latest stable version)
-PYTHON_VERSION="3.13"
+# Install Python 3.14, the newest version supported by the Ansible package
+PYTHON_VERSION="3.14"
 if ! brew list python@${PYTHON_VERSION} &> /dev/null; then
     echo -e "\033[0;33m Installing Python ${PYTHON_VERSION}... \033[0m"
     brew install python@${PYTHON_VERSION}
@@ -62,11 +62,12 @@ if ! command -v pipx &> /dev/null; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
 
-# Install Ansible using pipx for isolated environment
-ANSIBLE_VERSION="12.0.0"  # Latest stable version
-if ! pipx list | grep -q "ansible"; then
+ANSIBLE_VERSION="14.6.0"
+if ! pipx list | grep -q "package ansible "; then
     echo -e "\033[0;33m Installing Ansible ${ANSIBLE_VERSION} with pipx... \033[0m"
-    pipx install --include-deps ansible==$ANSIBLE_VERSION
+    pipx install \
+        --python "$BREW_PREFIX/opt/python@${PYTHON_VERSION}/bin/python${PYTHON_VERSION}" \
+        --include-deps ansible==$ANSIBLE_VERSION
     pipx inject --include-apps ansible kubernetes-validate markdown ansible-lint
     pipx inject ansible docker kubernetes boto3 netaddr
 

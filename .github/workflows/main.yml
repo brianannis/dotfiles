@@ -7,7 +7,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
 
       - name: setup ruby env
         uses: ruby/setup-ruby@v1
@@ -29,7 +29,7 @@ jobs:
     timeout-minutes: 30
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
 
       - name: Show macOS version
         run: sw_vers
@@ -54,7 +54,7 @@ jobs:
       VOLSIZE: '1g'
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
 
       - name: Run backup script
         shell: zsh {0}
